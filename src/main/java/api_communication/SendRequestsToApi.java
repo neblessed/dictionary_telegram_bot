@@ -1,22 +1,24 @@
 package api_communication;
 
 import io.restassured.response.Response;
+
 import java.util.*;
+
 import static io.restassured.RestAssured.given;
 
 public class SendRequestsToApi {
-    Map<String, String> dictionary = new HashMap<>(); //Коллекция слово-перевод
+    static Map<String, String> dictionary = new HashMap<>(); //Коллекция слово-перевод
     static List<String> wordsCollection = new ArrayList<>();
     static List<String> translatedWordsCollection = new ArrayList<>();
 
     private static final String TRANSLATION_KEY = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw";
 
-    public static void main(String[] args) {
-        //для теста
+    public static void getdResultWordCollection() {
         getRandomWords(5);
         translateWords(wordsCollection);
-        System.out.println(wordsCollection);
-        System.out.println(translatedWordsCollection);
+        for (int i = 0; i < wordsCollection.size(); i++) {
+            dictionary.put(wordsCollection.get(i), translatedWordsCollection.get(i));
+        }
     }
 
     public static void getRandomWords(int wordsQuantity) {
