@@ -12,6 +12,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <telegram.bot.version>6.0.1</telegram.bot.version>
     </properties>
 
     <dependencies>
@@ -19,7 +20,7 @@
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
-            <version>6.5.0</version>
+            <version>${telegram.bot.version}</version>
         </dependency>
 
         <!-- REST-assured for API communication-->
