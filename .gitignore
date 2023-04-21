@@ -12,7 +12,7 @@ target/
 *.iml
 *.ipr
 BotProperties.java
-src/main/java/BotProperties.java
+src/main/java/config/BotProperties.java
 
 ### Eclipse ###
 .apt_generated
