@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил парсинг слов из файла">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="fix парсинга из файлов">
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" afterDir="false" />
     </list>
@@ -162,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682158785310</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix парсинга из файлов">
+      <created>1682169731079</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682169731079</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,6 +212,7 @@
     <MESSAGE value="начал писать switch-case для кнопок" />
     <MESSAGE value="доработал метод getResultWordCollection" />
     <MESSAGE value="добавил парсинг слов из файла" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил парсинг слов из файла" />
+    <MESSAGE value="fix парсинга из файлов" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix парсинга из файлов" />
   </component>
 </project>

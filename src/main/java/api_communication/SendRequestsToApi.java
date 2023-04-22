@@ -18,8 +18,8 @@ public class SendRequestsToApi extends BotProperties {
     public String getResultWordCollection(int wordsQuantity) {
         String resultWordKeyValue = "";
         parseEngWordsFromFile(wordsQuantity); //Парсинг из файла
-//        getRandomWords(wordsQuantity); //Преобразование Set в List с нужным размером
         translateWords(wordsCollection); //Перевод слов
+
         //Объединение Слово - перевод в одну строку, для дальнейшего вывода в бота
         for (int i = 0; i < wordsQuantity; i++) {
             resultWordKeyValue = resultWordKeyValue.concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + " \n");
@@ -29,16 +29,6 @@ public class SendRequestsToApi extends BotProperties {
         translatedWordsCollection.clear();
         return resultWordKeyValue;
     }
-
-//    public static void getRandomWords(int wordsQuantity) {
-//        int count = 0;
-//        for (String element : parsedEngWords) {
-//            if (count < wordsQuantity) {
-//                wordsCollection.add(element);
-//                count++;
-//            } else break;
-//        }
-//    }
 
     public static void translateWords(List<String> words) {
         for (String word : words) {

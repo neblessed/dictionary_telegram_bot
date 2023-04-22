@@ -84,7 +84,7 @@ public class BotController extends TelegramLongPollingBot {
                 sendText(id, new SendRequestsToApi().getResultWordCollection(10), setUpKeyboard());
                 try {
                     //Пока для теста, убрать потом, заменить на телеграмовский sheduler
-                    Thread.sleep(15000);
+                    Thread.sleep(5000);
                     sendText(id, new SendRequestsToApi().getResultWordCollection(10), setUpKeyboard());
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
