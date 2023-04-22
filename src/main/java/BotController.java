@@ -11,6 +11,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import static api_communication.SendRequestsToApi.*;
 import static config.BotProperties.*;
 
 public class BotController extends TelegramLongPollingBot {
@@ -78,8 +79,18 @@ public class BotController extends TelegramLongPollingBot {
         switch (update.getMessage().getText()) {
             case "/start " -> sendText(id, "Привет, воспользуйся меню 👇", setUpKeyboard());
             //TODO заменить на выбрасываемые слова из коллекции (возможно concat key - value)
-            case "Изучить слова 📚" -> sendText(id, "Слово для изучения: book - книга", setUpKeyboard());
-            default ->  sendText(id, "Эта кнопка пока не работает 😢", setUpKeyboard());
+            case "Изучить слова 📚" -> {
+                sendText(id,"Подождите, Ваш запрос обрабатывается...",setUpKeyboard());
+                sendText(id, new SendRequestsToApi().getResultWordCollection(10), setUpKeyboard());
+                try {
+                    //Пока для теста, убрать потом, заменить на телеграмовский sheduler
+                    Thread.sleep(15000);
+                    sendText(id, new SendRequestsToApi().getResultWordCollection(10), setUpKeyboard());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            default -> sendText(id, "Эта кнопка пока не работает 😢", setUpKeyboard());
         }
     }
 }

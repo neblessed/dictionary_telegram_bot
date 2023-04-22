@@ -1,29 +1,27 @@
 package api_communication;
 
+import config.BotProperties;
 import io.restassured.response.Response;
 
 import java.util.*;
 
 import static io.restassured.RestAssured.given;
 
-public class SendRequestsToApi {
-    static Map<String, String> dictionary = new HashMap<>(); //Коллекция слово-перевод
-    static List<String> wordsCollection = new ArrayList<>();
-    static List<String> translatedWordsCollection = new ArrayList<>();
+public class SendRequestsToApi extends BotProperties {
+    static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
+    static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
 
-    private static final String TRANSLATION_KEY = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw";
-    //TODO Доработать объединение коллекции в строку с переносами, результат - выбрасывать 1 текст со слово/перевод
-    public static void main(String[] args) {
-        System.out.println(getResultWordCollection(5));
-    }
-    public static String getResultWordCollection(int wordsQuantity) {
+    //TODO Доработать парсинг слов для перевода из файла, а не брать слова с API
+    public String getResultWordCollection(int wordsQuantity) {
         String resultWordKeyValue = "";
         getRandomWords(wordsQuantity);
         translateWords(wordsCollection);
+        //Объединение Слово - перевод в одну строку, для дальнейшего вывода в бота
         for (int i = 0; i < wordsQuantity; i++) {
-            resultWordKeyValue = wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + " \n";
-            //dictionary.put(wordsCollection.get(i), translatedWordsCollection.get(i));
+            resultWordKeyValue = resultWordKeyValue.concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + " \n");
         }
+        //Очистка коллекции переводов
+        translatedWordsCollection.clear();
         return resultWordKeyValue;
     }
 
@@ -42,7 +40,7 @@ public class SendRequestsToApi {
 
     public static String translate(String word) {
         return given()
-                .get("https://translation.googleapis.com/language/translate/v2?key=" + TRANSLATION_KEY + "&q=" + word + "&source=en&target=ru")
+                .get("https://translation.googleapis.com/language/translate/v2?key=" + TRANSLATION_API_KEY + "&q=" + word + "&source=en&target=ru")
                 .then().extract().jsonPath().getString("data.translations.translatedText").replace("[", "").replace("]", "");
     }
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил клавиатуру и 3 кнопки в бота">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="начал писать switch-case для кнопок">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" afterDir="false" />
@@ -141,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682141055872</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="начал писать switch-case для кнопок">
+      <created>1682147675458</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682147675458</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,6 +189,7 @@
     <MESSAGE value="добавил методы для получения и перевода слов" />
     <MESSAGE value="добавил коллекцию Map формата слово-перевод" />
     <MESSAGE value="добавил клавиатуру и 3 кнопки в бота" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил клавиатуру и 3 кнопки в бота" />
+    <MESSAGE value="начал писать switch-case для кнопок" />
+    <option name="LAST_COMMIT_MESSAGE" value="начал писать switch-case для кнопок" />
   </component>
 </project>
