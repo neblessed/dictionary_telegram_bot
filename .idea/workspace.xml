@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил коллекцию Map формата слово-перевод">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил клавиатуру и 3 кнопки в бота">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="bot_connection" />
+        <entry key="$PROJECT_DIR$" value="translator" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682112214188</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="добавил клавиатуру и 3 кнопки в бота">
+      <created>1682141055872</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682141055872</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +181,7 @@
     <MESSAGE value="подключил бота" />
     <MESSAGE value="добавил методы для получения и перевода слов" />
     <MESSAGE value="добавил коллекцию Map формата слово-перевод" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил коллекцию Map формата слово-перевод" />
+    <MESSAGE value="добавил клавиатуру и 3 кнопки в бота" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил клавиатуру и 3 кнопки в бота" />
   </component>
 </project>

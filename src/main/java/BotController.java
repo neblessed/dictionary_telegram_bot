@@ -1,3 +1,4 @@
+import api_communication.SendRequestsToApi;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -28,28 +29,38 @@ public class BotController extends TelegramLongPollingBot {
         return BOT_TOKEN;
     }
 
-    public void sendText(Long who, String what) {
+    static ReplyKeyboardMarkup setUpKeyboard() {
+        //Использованные кнопки в меню
+        var learnButton = "Изучить слова 📚";
+        var dayWordsLimitButton = "Дневной лимит слов 📈";
+        var runExamButton = "Запустить тестирование 🍀";
+
         // Создаю объект клавиатуры
         ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
 
         // Создаю список строк с названиями кнопок
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row1 = new KeyboardRow();
-        row1.add("Получить слова");
+        row1.add(learnButton);
         keyboard.add(row1);
         KeyboardRow row2 = new KeyboardRow();
-        row2.add("Количество слов");
+        row2.add(dayWordsLimitButton);
         keyboard.add(row2);
         KeyboardRow row3 = new KeyboardRow();
-        row3.add("Запустить тест");
+        row3.add(runExamButton);
         keyboard.add(row3);
 
         // Устанавливаю клавиатуру
+        keyboardMarkup.setResizeKeyboard(true);
         keyboardMarkup.setKeyboard(keyboard);
+        return keyboardMarkup;
+    }
+
+    public void sendText(Long who, String what, ReplyKeyboardMarkup replyKeyboard) {
         SendMessage sm = SendMessage.builder()
                 .chatId(who.toString()) //Кому сообщение
                 .text(what)
-                .replyMarkup(keyboardMarkup)
+                .replyMarkup(replyKeyboard)
                 .build();
         try {
             execute(sm);
@@ -64,6 +75,11 @@ public class BotController extends TelegramLongPollingBot {
         var user = msg.getFrom();
         var id = user.getId();
 
-        sendText(id, "TEST");
+        switch (update.getMessage().getText()) {
+            case "/start " -> sendText(id, "Привет, воспользуйся меню 👇", setUpKeyboard());
+            //TODO заменить на выбрасываемые слова из коллекции (возможно concat key - value)
+            case "Изучить слова 📚" -> sendText(id, "Слово для изучения: book - книга", setUpKeyboard());
+            default ->  sendText(id, "Эта кнопка пока не работает 😢", setUpKeyboard());
+        }
     }
 }

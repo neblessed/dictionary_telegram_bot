@@ -12,13 +12,19 @@ public class SendRequestsToApi {
     static List<String> translatedWordsCollection = new ArrayList<>();
 
     private static final String TRANSLATION_KEY = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw";
-
-    public static void getdResultWordCollection() {
-        getRandomWords(5);
+    //TODO Доработать объединение коллекции в строку с переносами, результат - выбрасывать 1 текст со слово/перевод
+    public static void main(String[] args) {
+        System.out.println(getResultWordCollection(5));
+    }
+    public static String getResultWordCollection(int wordsQuantity) {
+        String resultWordKeyValue = "";
+        getRandomWords(wordsQuantity);
         translateWords(wordsCollection);
-        for (int i = 0; i < wordsCollection.size(); i++) {
-            dictionary.put(wordsCollection.get(i), translatedWordsCollection.get(i));
+        for (int i = 0; i < wordsQuantity; i++) {
+            resultWordKeyValue = wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + " \n";
+            //dictionary.put(wordsCollection.get(i), translatedWordsCollection.get(i));
         }
+        return resultWordKeyValue;
     }
 
     public static void getRandomWords(int wordsQuantity) {
