@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="edit gitignore">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил парсер в csv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="translator" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,6 +51,10 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -62,7 +62,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.BotController">
     <configuration name="BotController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BotController" />
       <module name="dictionary_telegram_bot" />
@@ -70,9 +70,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParserHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api_communication.ParserHelper" />
+      <module name="dictionary_telegram_bot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api_communication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.BotController" />
+        <item itemvalue="Application.ParserHelper" />
       </list>
     </recent_temporary>
   </component>
@@ -99,7 +113,84 @@
       <option name="project" value="LOCAL" />
       <updated>1682096452096</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="подключил бота">
+      <created>1682097182628</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682097182628</updated>
+    </task>
+    <task id="LOCAL-00004" summary="добавил методы для получения и перевода слов">
+      <created>1682109579432</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682109579432</updated>
+    </task>
+    <task id="LOCAL-00005" summary="добавил коллекцию Map формата слово-перевод">
+      <created>1682112214188</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682112214188</updated>
+    </task>
+    <task id="LOCAL-00006" summary="добавил клавиатуру и 3 кнопки в бота">
+      <created>1682141055872</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682141055872</updated>
+    </task>
+    <task id="LOCAL-00007" summary="начал писать switch-case для кнопок">
+      <created>1682147675458</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682147675458</updated>
+    </task>
+    <task id="LOCAL-00008" summary="доработал метод getResultWordCollection">
+      <created>1682156787304</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682156787304</updated>
+    </task>
+    <task id="LOCAL-00009" summary="добавил парсинг слов из файла">
+      <created>1682158785310</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682158785310</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix парсинга из файлов">
+      <created>1682169731079</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682169731079</updated>
+    </task>
+    <task id="LOCAL-00011" summary="почистил код">
+      <created>1682169785096</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682169785096</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix switch-case">
+      <created>1682173629101</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682173629101</updated>
+    </task>
+    <task id="LOCAL-00013" summary="добавил парсер в csv">
+      <created>1682175693322</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682175693322</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,7 +198,27 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="SHOW_DETAILS_IN_CHANGES" value="false" />
+              <option name="HIGHLIGHTERS">
+                <map>
+                  <entry key="CURRENT_BRANCH" value="false" />
+                  <entry key="MERGE_COMMITS" value="false" />
+                  <entry key="MY_COMMITS" value="false" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/bot_connection" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -116,6 +227,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add dependencies" />
     <MESSAGE value="edit gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit gitignore" />
+    <MESSAGE value="подключил бота" />
+    <MESSAGE value="добавил методы для получения и перевода слов" />
+    <MESSAGE value="добавил коллекцию Map формата слово-перевод" />
+    <MESSAGE value="добавил клавиатуру и 3 кнопки в бота" />
+    <MESSAGE value="начал писать switch-case для кнопок" />
+    <MESSAGE value="доработал метод getResultWordCollection" />
+    <MESSAGE value="добавил парсинг слов из файла" />
+    <MESSAGE value="fix парсинга из файлов" />
+    <MESSAGE value="почистил код" />
+    <MESSAGE value="fix switch-case" />
+    <MESSAGE value="добавил парсер в csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил парсер в csv" />
   </component>
 </project>
