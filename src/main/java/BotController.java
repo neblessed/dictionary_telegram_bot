@@ -77,7 +77,7 @@ public class BotController extends TelegramLongPollingBot {
         var id = user.getId();
 
         switch (update.getMessage().getText()) {
-            case "/start " -> sendText(id, "Привет, воспользуйся меню 👇", setUpKeyboard());
+            case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", setUpKeyboard());
             //TODO заменить на выбрасываемые слова из коллекции (возможно concat key - value)
             case "Изучить слова 📚" -> {
                 sendText(id, "Подождите, Ваш запрос обрабатывается...", setUpKeyboard());
