@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="начал писать switch-case для кнопок">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="доработал метод getResultWordCollection">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/words.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682147675458</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="доработал метод getResultWordCollection">
+      <created>1682156787304</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682156787304</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,6 +197,7 @@
     <MESSAGE value="добавил коллекцию Map формата слово-перевод" />
     <MESSAGE value="добавил клавиатуру и 3 кнопки в бота" />
     <MESSAGE value="начал писать switch-case для кнопок" />
-    <option name="LAST_COMMIT_MESSAGE" value="начал писать switch-case для кнопок" />
+    <MESSAGE value="доработал метод getResultWordCollection" />
+    <option name="LAST_COMMIT_MESSAGE" value="доработал метод getResultWordCollection" />
   </component>
 </project>
