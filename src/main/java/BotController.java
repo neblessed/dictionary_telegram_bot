@@ -77,17 +77,9 @@ public class BotController extends TelegramLongPollingBot {
 
         switch (update.getMessage().getText()) {
             case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", setUpKeyboard());
-            //TODO заменить на выбрасываемые слова из коллекции (возможно concat key - value)
             case "Изучить слова 📚" -> {
                 sendText(id, "Подождите, Ваш запрос обрабатывается...", setUpKeyboard());
-                sendText(id, new ParserHelper().getResultWordCollection(10), setUpKeyboard());
-                try {
-                    //Пока для теста, убрать потом, заменить на телеграмовский sheduler
-                    Thread.sleep(5000);
-                    sendText(id, new ParserHelper().getResultWordCollection(10), setUpKeyboard());
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                sendText(id, new ParserHelper().getWordsPairs(10), setUpKeyboard());
             }
             default -> sendText(id, "Эта кнопка пока не работает 😢", setUpKeyboard());
         }

@@ -14,10 +14,8 @@ import static io.restassured.RestAssured.given;
 public class ParserHelper extends BotProperties {
     static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
-    static List<String> parsedEngWords = new ArrayList<>();
 
-    //TODO Доработать парсинг слов для перевода из файла, а не брать слова с API
-    public String getResultWordCollection(int wordsQuantity) {
+    public String getWordsPairs(int wordsQuantity) {
         String resultWordKeyValue = "";
         parseWordsFromFile(wordsQuantity); //Парсинг из файла
         translateWords(wordsCollection); //Перевод слов
@@ -49,6 +47,7 @@ public class ParserHelper extends BotProperties {
     }
 
     public static void parseWordsFromFile(int wordsQuantity) {
+        List<String> parsedEngWords = new ArrayList<>(); //Коллекция спарсеных слов
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/words.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -62,7 +61,6 @@ public class ParserHelper extends BotProperties {
             int number = new Random().nextInt(parsedEngWords.size());
             wordsCollection.add(parsedEngWords.get(number));
         }
-
     }
 
     public static void parseToExamFile(String path, List<String> words, List<String> translatedWords) {
