@@ -4,12 +4,8 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static api_communication.ParserHelper.*;
 
@@ -27,33 +23,6 @@ public class BotController extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         return BOT_TOKEN;
-    }
-
-    static ReplyKeyboardMarkup setUpKeyboard() {
-        //Использованные кнопки в меню
-        var learnButton = "Изучить слова 📚";
-        var dayWordsLimitButton = "Дневной лимит слов 📈";
-        var runExamButton = "Запустить тестирование 🍀";
-
-        // Создаю объект клавиатуры
-        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-
-        // Создаю список строк с названиями кнопок
-        List<KeyboardRow> keyboard = new ArrayList<>();
-        KeyboardRow row1 = new KeyboardRow();
-        row1.add(learnButton);
-        keyboard.add(row1);
-        KeyboardRow row2 = new KeyboardRow();
-        row2.add(dayWordsLimitButton);
-        keyboard.add(row2);
-        KeyboardRow row3 = new KeyboardRow();
-        row3.add(runExamButton);
-        keyboard.add(row3);
-
-        // Устанавливаю клавиатуру
-        keyboardMarkup.setResizeKeyboard(true);
-        keyboardMarkup.setKeyboard(keyboard);
-        return keyboardMarkup;
     }
 
     public void sendText(Long who, String what, ReplyKeyboardMarkup replyKeyboard) {
@@ -74,14 +43,16 @@ public class BotController extends TelegramLongPollingBot {
         var msg = update.getMessage();
         var user = msg.getFrom();
         var id = user.getId();
+        int limit = 3;
 
-        switch (update.getMessage().getText()) {
-            case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", setUpKeyboard());
+        switch (msg.getText()) {
+            case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", Keyboards.mainMenu());
             case "Изучить слова 📚" -> {
-                sendText(id, "Подождите, Ваш запрос обрабатывается...", setUpKeyboard());
-                sendText(id, new ParserHelper().getWordsPairs(10), setUpKeyboard());
+                sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
+                sendText(id, new ParserHelper().getWordsPairs(limit), Keyboards.mainMenu());
             }
-            default -> sendText(id, "Эта кнопка пока не работает 😢", setUpKeyboard());
+            case "Дневной лимит слов 📈" ->
+                sendText(id, "Выберите желаемое количество слов в день 📈", Keyboards.wordLimit());
         }
     }
 }
