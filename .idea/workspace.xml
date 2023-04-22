@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="доработал парсер для exam.csv">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Keyboards.java" afterDir="false" />
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="написал keyboard для лимита слов в день">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/exam.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/exam.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +203,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682196286437</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="доработал парсер для exam.csv">
+      <created>1682200769243</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682200769243</updated>
+    </task>
+    <task id="LOCAL-00017" summary="написал keyboard для лимита слов в день">
+      <created>1682200787678</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682200787678</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,6 +267,7 @@
     <MESSAGE value="добавил парсер в csv" />
     <MESSAGE value="убрал лишний код" />
     <MESSAGE value="доработал парсер для exam.csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="доработал парсер для exam.csv" />
+    <MESSAGE value="написал keyboard для лимита слов в день" />
+    <option name="LAST_COMMIT_MESSAGE" value="написал keyboard для лимита слов в день" />
   </component>
 </project>

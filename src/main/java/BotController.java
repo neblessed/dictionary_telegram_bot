@@ -51,6 +51,7 @@ public class BotController extends TelegramLongPollingBot {
                 sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
                 sendText(id, new ParserHelper().getWordsPairs(limit), Keyboards.mainMenu());
             }
+            //TODO придумать реализацию обработки ответа и назначения нового лимита
             case "Дневной лимит слов 📈" ->
                 sendText(id, "Выберите желаемое количество слов в день 📈", Keyboards.wordLimit());
         }
