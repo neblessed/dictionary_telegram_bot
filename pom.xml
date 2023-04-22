@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <telegram.bot.version>6.0.1</telegram.bot.version>
         <rest.assured.version>5.3.0</rest.assured.version>
+        <csv.writer.version>5.7.1</csv.writer.version>
     </properties>
 
     <dependencies>
@@ -30,6 +31,13 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest.assured.version}</version>
         </dependency>
+        <!-- CSVWriter -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${csv.writer.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

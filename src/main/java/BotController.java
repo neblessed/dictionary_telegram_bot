@@ -1,4 +1,4 @@
-import api_communication.SendRequestsToApi;
+import api_communication.ParserHelper;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,8 +11,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import java.util.ArrayList;
 import java.util.List;
 
-import static api_communication.SendRequestsToApi.*;
-import static config.BotProperties.*;
+import static api_communication.ParserHelper.*;
 
 public class BotController extends TelegramLongPollingBot {
     public static void main(String[] args) throws TelegramApiException {
@@ -81,11 +80,11 @@ public class BotController extends TelegramLongPollingBot {
             //TODO заменить на выбрасываемые слова из коллекции (возможно concat key - value)
             case "Изучить слова 📚" -> {
                 sendText(id, "Подождите, Ваш запрос обрабатывается...", setUpKeyboard());
-                sendText(id, new SendRequestsToApi().getResultWordCollection(10), setUpKeyboard());
+                sendText(id, new ParserHelper().getResultWordCollection(10), setUpKeyboard());
                 try {
                     //Пока для теста, убрать потом, заменить на телеграмовский sheduler
                     Thread.sleep(5000);
-                    sendText(id, new SendRequestsToApi().getResultWordCollection(10), setUpKeyboard());
+                    sendText(id, new ParserHelper().getResultWordCollection(10), setUpKeyboard());
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

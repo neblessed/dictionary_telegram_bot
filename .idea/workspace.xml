@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="почистил код">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="fix switch-case">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/exam.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/SendRequestsToApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,8 +72,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SendRequestsToApi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="api_communication.SendRequestsToApi" />
+    <configuration name="ParserHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api_communication.ParserHelper" />
       <module name="dictionary_telegram_bot" />
       <extension name="coverage">
         <pattern>
@@ -85,7 +88,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.BotController" />
-        <item itemvalue="Application.SendRequestsToApi" />
+        <item itemvalue="Application.ParserHelper" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682169785096</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix switch-case">
+      <created>1682173629101</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682173629101</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,6 +231,7 @@
     <MESSAGE value="добавил парсинг слов из файла" />
     <MESSAGE value="fix парсинга из файлов" />
     <MESSAGE value="почистил код" />
-    <option name="LAST_COMMIT_MESSAGE" value="почистил код" />
+    <MESSAGE value="fix switch-case" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix switch-case" />
   </component>
 </project>
