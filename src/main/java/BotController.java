@@ -80,7 +80,7 @@ public class BotController extends TelegramLongPollingBot {
             case "/start " -> sendText(id, "Привет, воспользуйся меню 👇", setUpKeyboard());
             //TODO заменить на выбрасываемые слова из коллекции (возможно concat key - value)
             case "Изучить слова 📚" -> {
-                sendText(id,"Подождите, Ваш запрос обрабатывается...",setUpKeyboard());
+                sendText(id, "Подождите, Ваш запрос обрабатывается...", setUpKeyboard());
                 sendText(id, new SendRequestsToApi().getResultWordCollection(10), setUpKeyboard());
                 try {
                     //Пока для теста, убрать потом, заменить на телеграмовский sheduler

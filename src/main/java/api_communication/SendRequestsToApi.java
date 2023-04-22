@@ -12,32 +12,33 @@ import static io.restassured.RestAssured.given;
 public class SendRequestsToApi extends BotProperties {
     static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
-    static Set<String> parsedEngWords = new HashSet<>();
+    static List<String> parsedEngWords = new ArrayList<>();
 
     //TODO Доработать парсинг слов для перевода из файла, а не брать слова с API
     public String getResultWordCollection(int wordsQuantity) {
         String resultWordKeyValue = "";
-        parseEngWordsFromFile();
-        getRandomWords(wordsQuantity);
-        translateWords(wordsCollection);
+        parseEngWordsFromFile(wordsQuantity); //Парсинг из файла
+//        getRandomWords(wordsQuantity); //Преобразование Set в List с нужным размером
+        translateWords(wordsCollection); //Перевод слов
         //Объединение Слово - перевод в одну строку, для дальнейшего вывода в бота
         for (int i = 0; i < wordsQuantity; i++) {
             resultWordKeyValue = resultWordKeyValue.concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + " \n");
         }
         //Очистка коллекции переводов
+        wordsCollection.clear();
         translatedWordsCollection.clear();
         return resultWordKeyValue;
     }
 
-    public static void getRandomWords(int wordsQuantity) {
-        int count = 0;
-        for (String element: parsedEngWords) {
-            if (count < wordsQuantity){
-                wordsCollection.add(element);
-            }
-
-        }
-    }
+//    public static void getRandomWords(int wordsQuantity) {
+//        int count = 0;
+//        for (String element : parsedEngWords) {
+//            if (count < wordsQuantity) {
+//                wordsCollection.add(element);
+//                count++;
+//            } else break;
+//        }
+//    }
 
     public static void translateWords(List<String> words) {
         for (String word : words) {
@@ -51,7 +52,7 @@ public class SendRequestsToApi extends BotProperties {
                 .then().extract().jsonPath().getString("data.translations.translatedText").replace("[", "").replace("]", "");
     }
 
-    public static void parseEngWordsFromFile(){
+    public static void parseEngWordsFromFile(int wordsQuantity) {
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/words.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -60,5 +61,11 @@ public class SendRequestsToApi extends BotProperties {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //Генерация случайного числа для взятия по индексу рандомно
+        for (int i = 0; i < wordsQuantity; i++) {
+            int number = new Random().nextInt(parsedEngWords.size());
+            wordsCollection.add(parsedEngWords.get(number));
+        }
+
     }
 }
