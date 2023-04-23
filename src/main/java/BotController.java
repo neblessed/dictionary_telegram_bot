@@ -6,7 +6,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-
 import static api_communication.ParserHelper.*;
 
 public class BotController extends TelegramLongPollingBot {
@@ -40,6 +39,7 @@ public class BotController extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        Messages messagesClass = new Messages(); //Класс с сообщениями
         var msg = update.getMessage();
         var user = msg.getFrom();
         var id = user.getId();
@@ -52,8 +52,10 @@ public class BotController extends TelegramLongPollingBot {
                 sendText(id, new ParserHelper().getWordsPairs(limit), Keyboards.mainMenu());
             }
             //TODO придумать реализацию обработки ответа и назначения нового лимита
-            case "Дневной лимит слов 📈" ->
-                sendText(id, "Выберите желаемое количество слов в день 📈", Keyboards.wordLimit());
+            case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(id);
+
+            case "Вернуться в меню ⚡" -> sendText(id, "Главное меню", Keyboards.mainMenu());
+
         }
     }
 }

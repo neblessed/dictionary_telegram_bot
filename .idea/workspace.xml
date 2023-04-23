@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="написал keyboard для лимита слов в день">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="todo">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Messages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Keyboards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Keyboards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/exam.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/exam.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682200787678</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="todo">
+      <created>1682200818680</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682200818680</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,6 +278,7 @@
     <MESSAGE value="убрал лишний код" />
     <MESSAGE value="доработал парсер для exam.csv" />
     <MESSAGE value="написал keyboard для лимита слов в день" />
-    <option name="LAST_COMMIT_MESSAGE" value="написал keyboard для лимита слов в день" />
+    <MESSAGE value="todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="todo" />
   </component>
 </project>

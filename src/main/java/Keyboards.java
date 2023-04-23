@@ -1,4 +1,6 @@
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.util.ArrayList;
@@ -34,10 +36,10 @@ public class Keyboards {
 
     static ReplyKeyboardMarkup wordLimit() {
         //Использованные кнопки в меню
-        var fiveWords = "5";
-        var tenWords = "10";
-        var fifteenWords = "15";
-        var twentyWords = "20";
+        var fiveWords = "5 слов";
+        var tenWords = "10 слов";
+        var fifteenWords = "15 слов";
+        var twentyWords = "20 слов";
 
         // Создаю объект клавиатуры
         ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
@@ -60,5 +62,26 @@ public class Keyboards {
         keyboardMarkup.setResizeKeyboard(true);
         keyboardMarkup.setKeyboard(keyboard);
         return keyboardMarkup;
+    }
+
+    public static InlineKeyboardMarkup inlineWordLimit() {
+        // Создаем список кнопок
+        List<InlineKeyboardButton> buttons = new ArrayList<>();
+        InlineKeyboardButton fiveWords = new InlineKeyboardButton();
+        fiveWords.setCallbackData("five");
+        fiveWords.setText("5");
+        InlineKeyboardButton tenWords = new InlineKeyboardButton();
+        fiveWords.setCallbackData("ten");
+        fiveWords.setText("10");
+        InlineKeyboardButton fifteenWords = new InlineKeyboardButton();
+        fiveWords.setCallbackData("fifteen");
+        fiveWords.setText("15");
+        InlineKeyboardButton twentyWords = new InlineKeyboardButton();
+        fiveWords.setCallbackData("twenty");
+        fiveWords.setText("20");
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(List.of(buttons));
+        return markup;
     }
 }
