@@ -1,6 +1,4 @@
-import org.checkerframework.checker.units.qual.C;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -15,26 +13,28 @@ public class Messages extends BotController {
         List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
         List<InlineKeyboardButton> rowInLine;
 
-        InlineKeyboardButton five = new InlineKeyboardButton();
-        five.setText("5");
-        five.setCallbackData("five_btn");
+        InlineKeyboardButton five = InlineKeyboardButton.builder()
+                .text("5")
+                .callbackData("five_btn")
+                .build();
 
-        InlineKeyboardButton ten = new InlineKeyboardButton();
-        ten.setText("10");
-        ten.setCallbackData("ten_btn");
+        InlineKeyboardButton ten = InlineKeyboardButton.builder()
+                .text("10")
+                .callbackData("ten_btn")
+                .build();
 
         InlineKeyboardButton fifteen = InlineKeyboardButton.builder()
                 .text("15")
                 .callbackData("fifteen_btn")
                 .build();
 
-        InlineKeyboardButton twenty = new InlineKeyboardButton();
-        twenty.setText("20");
-        twenty.setCallbackData("twenty_btn");
+        InlineKeyboardButton twenty = InlineKeyboardButton.builder()
+                .text("20")
+                .callbackData("twenty_btn")
+                .build();
 
         rowInLine = List.of(five, ten, fifteen, twenty);
         rowsInLine.add(rowInLine);
-
         inlineKeyboardMarkup.setKeyboard(rowsInLine);
 
         SendMessage msg = SendMessage.builder()
