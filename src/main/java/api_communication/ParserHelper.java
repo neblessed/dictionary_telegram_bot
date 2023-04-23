@@ -3,12 +3,10 @@ package api_communication;
 import api_communication.CSV_handler.CreateHandler;
 import api_communication.CSV_handler.NotifyHandler;
 import config.BotProperties;
-import com.opencsv.CSVWriter;
 
 import java.io.*;
 import java.util.*;
 
-import static io.restassured.RestAssured.defaultParser;
 import static io.restassured.RestAssured.given;
 
 public class ParserHelper extends BotProperties {
