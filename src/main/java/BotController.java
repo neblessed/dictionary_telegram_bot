@@ -39,23 +39,23 @@ public class BotController extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        Messages messagesClass = new Messages(); //Класс с сообщениями
+        Messages messagesClass = new Messages();
         var msg = update.getMessage();
         var user = msg.getFrom();
         var id = user.getId();
         int limit = 3;
-
         switch (msg.getText()) {
             case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", Keyboards.mainMenu());
             case "Изучить слова 📚" -> {
                 sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
                 sendText(id, new ParserHelper().getWordsPairs(limit), Keyboards.mainMenu());
             }
-            //TODO придумать реализацию обработки ответа и назначения нового лимита
-            case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(id);
-
-            case "Вернуться в меню ⚡" -> sendText(id, "Главное меню", Keyboards.mainMenu());
-
+            //TODO придумать реализацию обработки нажатия и назначения нового лимита
+            case "Дневной лимит слов 📈" -> {
+                messagesClass.setWordsLimit(id, update);
+                System.out.println(update.hasCallbackQuery());
+            }
         }
+        System.out.println(update.getChosenInlineQuery());
     }
 }
