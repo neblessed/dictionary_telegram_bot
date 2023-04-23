@@ -3,10 +3,7 @@ package api_communication;
 import config.BotProperties;
 import com.opencsv.CSVWriter;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import static io.restassured.RestAssured.given;
@@ -22,7 +19,8 @@ public class ParserHelper extends BotProperties {
 
         //Объединение Слово - перевод в одну строку, для дальнейшего вывода в бота
         for (int i = 0; i < wordsQuantity; i++) {
-            resultWordKeyValue = resultWordKeyValue.concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + " \n");
+            resultWordKeyValue = resultWordKeyValue
+                    .concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + "\n");
         }
 
         //Парсинг в файл двух коллекций
@@ -64,14 +62,16 @@ public class ParserHelper extends BotProperties {
     }
 
     public static void parseToExamFile(String path, List<String> words, List<String> translatedWords) {
-        //TODO дописать парсер, сейчас он зачищает имеющиеся файлы, а должен добавлять туда значения
+        BufferedWriter writer;
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter(path));
-            writer.writeNext(words.toArray(new String[0]));
-            writer.writeNext(translatedWords.toArray(new String[0]));
+            writer = new BufferedWriter(new FileWriter(path, true));
+            for (int i = 0; i < words.size(); i++) {
+                writer.append(words.get(i)).append(", ").append(translatedWords.get(i));
+                writer.newLine();
+            }
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

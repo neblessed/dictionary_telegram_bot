@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил парсер в csv">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил кнопки к сообщению с лимитом слов">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +190,49 @@
       <option name="project" value="LOCAL" />
       <updated>1682175693322</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="убрал лишний код">
+      <created>1682176006823</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682176006823</updated>
+    </task>
+    <task id="LOCAL-00015" summary="доработал парсер для exam.csv">
+      <created>1682196286437</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682196286437</updated>
+    </task>
+    <task id="LOCAL-00016" summary="доработал парсер для exam.csv">
+      <created>1682200769243</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682200769243</updated>
+    </task>
+    <task id="LOCAL-00017" summary="написал keyboard для лимита слов в день">
+      <created>1682200787678</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682200787678</updated>
+    </task>
+    <task id="LOCAL-00018" summary="todo">
+      <created>1682200818680</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682200818680</updated>
+    </task>
+    <task id="LOCAL-00019" summary="добавил кнопки к сообщению с лимитом слов">
+      <created>1682235518200</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1682235518200</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,6 +280,14 @@
     <MESSAGE value="почистил код" />
     <MESSAGE value="fix switch-case" />
     <MESSAGE value="добавил парсер в csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил парсер в csv" />
+    <MESSAGE value="убрал лишний код" />
+    <MESSAGE value="доработал парсер для exam.csv" />
+    <MESSAGE value="написал keyboard для лимита слов в день" />
+    <MESSAGE value="todo" />
+    <MESSAGE value="добавил кнопки к сообщению с лимитом слов" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил кнопки к сообщению с лимитом слов" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/dictionary_telegram_bot$BotController.ic" NAME="BotController Coverage Results" MODIFIED="1682266514306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
