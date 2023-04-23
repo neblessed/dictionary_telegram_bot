@@ -67,8 +67,8 @@ public class ParserHelper extends BotProperties {
         //TODO дописать парсер, сейчас он зачищает имеющиеся файлы, а должен добавлять туда значения
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(path));
-            writer.writeNext(words.toArray(new String[0]));
-            writer.writeNext(translatedWords.toArray(new String[0]));
+            writer.writeNext(words.toArray(new String[0]), true);
+            writer.writeNext(translatedWords.toArray(new String[0]), true);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
