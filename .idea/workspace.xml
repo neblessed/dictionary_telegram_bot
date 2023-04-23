@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил парсер в csv">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="pom.xml / Commons-csv">
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
     </list>
@@ -32,13 +31,6 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2Ok9bas7s5EPyzrNdonrqO4KjLn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -190,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682175693322</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="CSVWriter / writeColumnNames / applyQuotesToAll == true">
+      <created>1682275486938</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682275486938</updated>
+    </task>
+    <task id="LOCAL-00015" summary="pom.xml / Commons-csv">
+      <created>1682275550067</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682275550067</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,6 +244,11 @@
     <MESSAGE value="почистил код" />
     <MESSAGE value="fix switch-case" />
     <MESSAGE value="добавил парсер в csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил парсер в csv" />
+    <MESSAGE value="CSVWriter / writeColumnNames / applyQuotesToAll == true" />
+    <MESSAGE value="pom.xml / Commons-csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="pom.xml / Commons-csv" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/dictionary_telegram_bot$BotController.ic" NAME="BotController Coverage Results" MODIFIED="1682266514306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
