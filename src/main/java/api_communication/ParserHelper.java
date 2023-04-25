@@ -1,5 +1,7 @@
 package api_communication;
 
+import api_communication.CSV_handler.CreateHandler;
+import api_communication.CSV_handler.NotifyHandler;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import config.BotProperties;
@@ -16,8 +18,11 @@ import static io.restassured.RestAssured.given;
 public class ParserHelper extends BotProperties {
     static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
+    static final CreateHandler createHandler = new CreateHandler();
+    static final NotifyHandler notifyHandler = new NotifyHandler();
+    static final String directoryPath = "src/main/resources/userWords";
 
-    public String getWordsPairs(Update update) {
+    public String getWordsPairs(Update update, long id) {
         String resultWordKeyValue = "";
         parseWordsFromFile(parseUserLimit(update)); //Парсинг из файла
         translateWords(wordsCollection); //Перевод слов
@@ -29,7 +34,15 @@ public class ParserHelper extends BotProperties {
         }
 
         //Парсинг в файл двух коллекций
-        parseToExamFile("src/main/resources/exam.csv", wordsCollection, translatedWordsCollection);
+        String fileName = id + ".csv";
+        // Создание объекта File для проверки наличия файла
+        File file = new File(directoryPath, fileName);
+
+        if (file.exists() && !file.isDirectory()) {
+            createHandler.createCVS(directoryPath + fileName, wordsCollection, translatedWordsCollection);
+        } else {
+            notifyHandler.notifyCSV(directoryPath + fileName, wordsCollection, translatedWordsCollection);
+        }
 
         //Очистка коллекций со словами
         wordsCollection.clear();
