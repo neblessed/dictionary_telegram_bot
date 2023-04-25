@@ -13,6 +13,7 @@ target/
 *.ipr
 BotProperties.java
 src/main/java/config/BotProperties.java
+.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
