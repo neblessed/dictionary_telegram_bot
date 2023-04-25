@@ -1,7 +1,7 @@
 package api_communication;
 
 import api_communication.CSV_handler.CreateHandler;
-import api_communication.CSV_handler.NotifyHandler;
+import api_communication.CSV_handler.AddHandler;
 import config.BotProperties;
 
 import java.io.*;
@@ -13,7 +13,7 @@ public class ParserHelper extends BotProperties {
     static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
     static final CreateHandler createHandler = new CreateHandler();
-    static final NotifyHandler notifyHandler = new NotifyHandler();
+    static final AddHandler notifyHandler = new AddHandler();
     static final String directoryPath = "src/main/resources/userWords";
 
     public String getWordsPairs(int wordsQuantity, long id) {
