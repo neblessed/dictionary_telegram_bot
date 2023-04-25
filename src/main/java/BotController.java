@@ -1,17 +1,17 @@
 import api_communication.ParserHelper;
-import com.fasterxml.jackson.core.exc.InputCoercionException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-
 import static api_communication.ParserHelper.*;
 
 public class BotController extends TelegramLongPollingBot {
+    private int limit = 10; //Лимит слов в день
     public static void main(String[] args) throws TelegramApiException {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
         botsApi.registerBot(new BotController());
@@ -41,24 +41,40 @@ public class BotController extends TelegramLongPollingBot {
     }
 
     @Override
-    public void onUpdateReceived(Update update)  {
+    public void onUpdateReceived(Update update) {
         Messages messagesClass = new Messages();
-        var msg = update.getMessage();
-        var user = msg.getFrom();
-        var id = user.getId();
-        int limit = 3;
-        switch (msg.getText()) {
-            case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", Keyboards.mainMenu());
-            case "Изучить слова 📚" -> {
-                sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
-                sendText(id, new ParserHelper().getWordsPairs(limit, id), Keyboards.mainMenu());
+        if (update.hasMessage()) {
+            var msg = update.getMessage();
+            var user = msg.getFrom();
+            var id = user.getId();
+            long chatId = update.getMessage().getChatId();
+            switch (msg.getText()) {
+                case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", Keyboards.mainMenu());
+                case "Изучить слова 📚" -> {
+                    sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
+                    sendText(id, new ParserHelper().getWordsPairs(getLimit()), Keyboards.mainMenu());
+                }
+                case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
             }
-            //TODO придумать реализацию обработки нажатия и назначения нового лимита
-            case "Дневной лимит слов 📈" -> {
-                messagesClass.setWordsLimit(id, update);
-                System.out.println(update.hasCallbackQuery());
+        } else if (update.hasCallbackQuery()) {
+            CallbackQuery callbackQuery = update.getCallbackQuery();
+            String data = callbackQuery.getData();
+            long chatIdFromQuery = callbackQuery.getMessage().getChatId();
+            switch (data) {
+                case "five_btn" -> setLimit(5);
+                case "fifteen_btn" -> setLimit(15);
+                case "twenty_btn" -> setLimit(20);
+                default -> setLimit(10);
             }
+            sendText(chatIdFromQuery, "Новый лимит установлен ✅", Keyboards.mainMenu());
         }
-        System.out.println(update.getChosenInlineQuery());
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }
