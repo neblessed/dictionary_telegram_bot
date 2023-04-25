@@ -87,6 +87,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ParserHelper" />
+        <item itemvalue="Application.BotController" />
         <item itemvalue="Application.BotController" />
         <item itemvalue="Application.ParserHelper" />
       </list>
@@ -241,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1682272219704</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="дописал inlineKeyboardButtons для установки лимита слов в день + добавил обработку нажатий">
+      <created>1682437881687</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1682437881687</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -263,7 +273,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/bot_connection" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -295,7 +305,11 @@
     <MESSAGE value="todo" />
     <MESSAGE value="добавил кнопки к сообщению с лимитом слов" />
     <MESSAGE value="изменения в методе setWordsLimit" />
-    <option name="LAST_COMMIT_MESSAGE" value="изменения в методе setWordsLimit" />
+    <MESSAGE value="дописал inlineKeyboardButtons для установки лимита слов в день + добавил обработку нажатий" />
+    <option name="LAST_COMMIT_MESSAGE" value="дописал inlineKeyboardButtons для установки лимита слов в день + добавил обработку нажатий" />
+    <MESSAGE value="CSVWriter / writeColumnNames / applyQuotesToAll == true" />
+    <MESSAGE value="pom.xml / Commons-csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="pom.xml / Commons-csv" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dictionary_telegram_bot$BotController.ic" NAME="BotController Coverage Results" MODIFIED="1682266514306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
