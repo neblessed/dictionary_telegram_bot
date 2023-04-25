@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="изменения в методе setWordsLimit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/exam.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/exam.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="translator" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

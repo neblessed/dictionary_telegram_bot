@@ -12,13 +12,13 @@ public class ParserHelper extends BotProperties {
     static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
 
-    public String getWordsPairs(int wordsQuantity) {
+    public String getWordsPairs(int limit) {
         String resultWordKeyValue = "";
-        parseWordsFromFile(wordsQuantity); //Парсинг из файла
+        parseWordsFromFile(limit); //Парсинг из файла
         translateWords(wordsCollection); //Перевод слов
 
         //Объединение Слово - перевод в одну строку, для дальнейшего вывода в бота
-        for (int i = 0; i < wordsQuantity; i++) {
+        for (int i = 0; i < limit; i++) {
             resultWordKeyValue = resultWordKeyValue
                     .concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + "\n");
         }
