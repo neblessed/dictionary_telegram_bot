@@ -4,16 +4,12 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+.idea
 *.iws
 *.iml
 *.ipr
 BotProperties.java
 src/main/java/config/BotProperties.java
-.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
