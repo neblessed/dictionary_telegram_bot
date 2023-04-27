@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/exam.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/exam.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +34,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="2Ok9bas7s5EPyzrNdonrqO4KjLn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -52,7 +44,13 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;ChangesTree.GroupingKeys&quot;: [
@@ -62,6 +60,11 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="api_communication" />
+      <recent name="api_communication.massages" />
     </key>
   </component>
   <component name="RunManager" selected="Application.BotController">
@@ -77,7 +80,7 @@
       <module name="dictionary_telegram_bot" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="api_communication.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -87,8 +90,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ParserHelper" />
         <item itemvalue="Application.BotController" />
+        <item itemvalue="Application.ParserHelper" />
         <item itemvalue="Application.BotController" />
         <item itemvalue="Application.ParserHelper" />
       </list>
@@ -102,6 +105,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682093786922</updated>
+      <workItem from="1682524682962" duration="13626000" />
     </task>
     <task id="LOCAL-00001" summary="add dependencies">
       <created>1682094199815</created>
@@ -250,9 +254,11 @@
       <option name="project" value="LOCAL" />
       <updated>1682437881687</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
     <option name="localTasksCounter" value="16" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -306,10 +312,20 @@
     <MESSAGE value="добавил кнопки к сообщению с лимитом слов" />
     <MESSAGE value="изменения в методе setWordsLimit" />
     <MESSAGE value="дописал inlineKeyboardButtons для установки лимита слов в день + добавил обработку нажатий" />
-    <option name="LAST_COMMIT_MESSAGE" value="дописал inlineKeyboardButtons для установки лимита слов в день + добавил обработку нажатий" />
     <MESSAGE value="CSVWriter / writeColumnNames / applyQuotesToAll == true" />
     <MESSAGE value="pom.xml / Commons-csv" />
     <option name="LAST_COMMIT_MESSAGE" value="pom.xml / Commons-csv" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ExamHandler.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dictionary_telegram_bot$BotController.ic" NAME="BotController Coverage Results" MODIFIED="1682266514306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

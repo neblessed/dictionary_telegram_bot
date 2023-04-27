@@ -21,7 +21,7 @@ public class ParserHelper extends BotProperties {
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
     static final CreateHandler createHandler = new CreateHandler();
     static final AddHandler notifyHandler = new AddHandler();
-    static final String directoryPath = "src/main/resources/userWords";
+    static final String directoryPath = "src/main/resources";
 
     public String getWordsPairs(Update update, long id) {
         String resultWordKeyValue = "";
@@ -35,7 +35,7 @@ public class ParserHelper extends BotProperties {
         }
 
         //Парсинг в файл двух коллекций
-        String fileName = id + ".csv";
+        String fileName = "userWords" + id + ".csv";
         // Создание объекта File для проверки наличия файла
         File file = new File(directoryPath, fileName);
 
@@ -51,13 +51,13 @@ public class ParserHelper extends BotProperties {
         return resultWordKeyValue;
     }
 
-    public static void translateWords(List<String> words) {
+    public void translateWords(List<String> words) {
         for (String word : words) {
             translatedWordsCollection.add(translate(word));
         }
     }
 
-    public static String translate(String word) {
+    public String translate(String word) {
         return given()
                 .get("https://translation.googleapis.com/language/translate/v2?key=" + TRANSLATION_API_KEY + "&q=" + word + "&source=en&target=ru")
                 .then().extract().jsonPath()
@@ -66,7 +66,7 @@ public class ParserHelper extends BotProperties {
                 .replace("]", "");
     }
 
-    public static void parseWordsFromFile(int wordsQuantity) {
+    public void parseWordsFromFile(int wordsQuantity) {
         List<String> parsedEngWords = new ArrayList<>(); //Коллекция спарсеных слов
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/words.txt"))) {
             String line;
