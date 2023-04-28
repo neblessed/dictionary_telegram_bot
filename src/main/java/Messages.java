@@ -1,5 +1,4 @@
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -7,7 +6,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.*;
 
 public class Messages extends BotController {
-    public void  setWordsLimit(long chatId) {
+    public void setWordsLimit(long chatId) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
         List<InlineKeyboardButton> rowInLine;
@@ -48,7 +47,7 @@ public class Messages extends BotController {
         }
     }
 
-    public void setFourСhoicesToExam(long chatId,
+    public void setFourChoicesToExam(long chatId,
                                      String rightChoice,
                                      String rightChoiceTranslation,
                                      List<String> wrongWord) {
@@ -58,13 +57,13 @@ public class Messages extends BotController {
 
         for (int i = 0; i < 3; i++) {
             rowInLine.add(InlineKeyboardButton.builder()
-                    .text(wrongWord.get(i))
+                    .text(wrongWord.get(i).toLowerCase())
                     .callbackData("btn_wrong" + i)
                     .build());
         }
 
         InlineKeyboardButton fourthChoice = InlineKeyboardButton.builder()
-                .text(rightChoice)
+                .text(rightChoice.toLowerCase())
                 .callbackData("rightChoice")
                 .build();
 
@@ -75,7 +74,7 @@ public class Messages extends BotController {
 
         SendMessage msg = SendMessage.builder()
                 .chatId(String.valueOf(chatId))
-                .text("Выберите правильный перевод слова " + rightChoiceTranslation)
+                .text("Как переводится: " + rightChoiceTranslation)
                 .replyMarkup(inlineKeyboardMarkup)
                 .build();
         try {
