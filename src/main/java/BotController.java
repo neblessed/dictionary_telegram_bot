@@ -66,7 +66,8 @@ public class BotController extends TelegramLongPollingBot {
                 }
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
                 case "Запустить тестирование 🍀" -> {
-                    if (!examHandler.getСhoice(id)) {
+                    //TODO переделать реализацию (возможно добавить обработку file(size) в самом методе getChoice
+                    if (!examHandler.getChoice(id)) {
                         sendText(id, "Вы не изучили ни одно слова", Keyboards.mainMenu());
                     }
                 }
@@ -95,11 +96,11 @@ public class BotController extends TelegramLongPollingBot {
                 }
                 case "btn_wrong1", "btn_wrong2", "btn_wrong3" -> {
                     sendText(id, "Не правильно 😔", Keyboards.mainMenu());
-                    examHandler.getСhoice(id);
+                    examHandler.getChoice(id);
                 }
                 default -> {
                     sendText(id, "Правильно 👍", Keyboards.mainMenu());
-                    examHandler.getСhoice(id);
+                    examHandler.getChoice(id);
                 }
             }
         }

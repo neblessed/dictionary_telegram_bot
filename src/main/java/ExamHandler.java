@@ -1,8 +1,10 @@
 import api_communication.ParserHelper;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.*;
 
 public class ExamHandler {
@@ -10,7 +12,7 @@ public class ExamHandler {
     private final ParserHelper parserHelper = new ParserHelper();
     private final Messages messages = new Messages();
 
-    public boolean getСhoice(long chatId) {
+    public boolean getChoice(long chatId) {
         List<String> pairs = setRightChoice(chatId);
         String fileName = "userWords" + chatId + ".csv";
         // Создание объекта File для проверки наличия файла
@@ -48,12 +50,19 @@ public class ExamHandler {
 
     public List<String> setRightChoice(long chatId) {
         List<String> wordPairs;
-
-        try (CSVReader br = new CSVReader(new FileReader("src/main/resources/user_words/userWords" + chatId + ".csv"))) {
+        String path = "src/main/resources/user_words/userWords" + chatId + ".csv";
+        try (CSVReader br = new CSVReader(new FileReader(path));
+             CSVWriter writer = new CSVWriter(new FileWriter(path, true))) {
             List<String[]> word = br.readAll();
+            //создаю рандомный индекс заранее
             int randomIndex = new Random().nextInt(word.size());
             wordPairs = List.of(word.get(randomIndex)[0], word.get(randomIndex)[1]);
-            System.out.println(wordPairs);
+            //удаляю пару по индексу
+            word.remove(randomIndex);
+            //Очищаю файл
+            new FileWriter(path, false);
+            //Записываю новую коллекцию в этот же файл
+            writer.writeAll(word, false);
             return wordPairs;
         } catch (Exception e) {
             e.printStackTrace();
