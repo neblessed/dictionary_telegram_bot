@@ -30,18 +30,12 @@ public class ParserHelper extends BotProperties {
                     .concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + "\n");
         }
 
-        //Парсинг в файл двух коллекций
+        //Имя создаваемого файла
         String fileName = "userWords" + id + ".csv";
-        // Создание объекта File для проверки наличия файла
-        File file = new File(directoryPath, fileName);
+        //Создание файла в директории user_words
+        AddHandler.addCSV(directoryPath + "/" + fileName, wordsCollection, translatedWordsCollection);
 
-        if (file.exists() && !file.isDirectory()) {
-            createHandler.createCVS(directoryPath + "/" + fileName, wordsCollection, translatedWordsCollection);
-        } else {
-            notifyHandler.addCSV(directoryPath + "/" + fileName, wordsCollection, translatedWordsCollection);
-        }
-
-        //Очистка коллекций со словами
+        //Очистка коллекций со словами после выдачи пользователю
         wordsCollection.clear();
         translatedWordsCollection.clear();
         return resultWordKeyValue;

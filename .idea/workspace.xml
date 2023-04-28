@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавление логики Экзамена">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавил создание файла со словами пользователя">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/CSV_handler/AddHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/CSV_handler/AddHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/CSV_handler/CreateHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/CSV_handler/CreateHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/exam.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/userWords351869653.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/userWords801523981.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/user_words/userWords765707926.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/users_limits/limits.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/users_limits/limits.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +85,7 @@
       <module name="dictionary_telegram_bot" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value=".*" />
+          <option name="PATTERN" value="api_communication.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,6 +96,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.BotController" />
+        <item itemvalue="Application.ParserHelper" />
         <item itemvalue="Application.ParserHelper" />
         <item itemvalue="Application.BotController" />
         <item itemvalue="Application.ParserHelper" />
@@ -277,7 +285,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="exam_button" />
                       </list>
                     </value>
                   </entry>
@@ -316,17 +324,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="добавление логики Экзамена" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ExamHandler.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="BotController" memberName="objectMapper" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/dictionary_telegram_bot$BotController.ic" NAME="BotController Coverage Results" MODIFIED="1682266514306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/dictionary_telegram_bot$BotController.ic" NAME="BotController Coverage Results" MODIFIED="1682545330228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
