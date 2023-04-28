@@ -17,7 +17,7 @@ public class ParserHelper extends BotProperties {
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
     static final CreateHandler createHandler = new CreateHandler();
     static final AddHandler notifyHandler = new AddHandler();
-    static final String directoryPath = "src/main/resources/userWords";
+    static final String directoryPath = "src/main/resources/user_words";
 
     public String getWordsPairs(Update update, long id) {
         String resultWordKeyValue = "";
@@ -36,9 +36,9 @@ public class ParserHelper extends BotProperties {
         File file = new File(directoryPath, fileName);
 
         if (file.exists() && !file.isDirectory()) {
-            createHandler.createCVS(directoryPath + fileName, wordsCollection, translatedWordsCollection);
+            createHandler.createCVS(directoryPath + "/" + fileName, wordsCollection, translatedWordsCollection);
         } else {
-            notifyHandler.addCSV(directoryPath + fileName, wordsCollection, translatedWordsCollection);
+            notifyHandler.addCSV(directoryPath + "/" + fileName, wordsCollection, translatedWordsCollection);
         }
 
         //Очистка коллекций со словами
