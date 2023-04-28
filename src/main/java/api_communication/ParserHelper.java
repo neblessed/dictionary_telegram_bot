@@ -38,7 +38,7 @@ public class ParserHelper extends BotProperties {
         if (file.exists() && !file.isDirectory()) {
             createHandler.createCVS(directoryPath + fileName, wordsCollection, translatedWordsCollection);
         } else {
-            notifyHandler.notifyCSV(directoryPath + fileName, wordsCollection, translatedWordsCollection);
+            notifyHandler.addCSV(directoryPath + fileName, wordsCollection, translatedWordsCollection);
         }
 
         //Очистка коллекций со словами

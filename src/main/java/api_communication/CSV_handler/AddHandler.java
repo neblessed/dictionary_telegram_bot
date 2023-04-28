@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AddHandler {
 
-    public static void notifyCSV(String path, List<String> words, List<String> translatedWords) {
+    public static void addCSV(String path, List<String> words, List<String> translatedWords) {
         try (CSVWriter writer = new CSVWriter(new FileWriter(path)))
         {
             writer.writeNext(words.toArray(new String[0]), true);
