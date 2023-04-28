@@ -1,15 +1,11 @@
 package api_communication;
 
 import api_communication.CSV_handler.CreateHandler;
-import api_communication.CSV_handler.AddHandler;
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
+import org.telegram.telegrambots.meta.api.objects.Update;
 import api_communication.CSV_handler.AddHandler;
 import config.BotProperties;
-import com.opencsv.CSVWriter;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.util.*;
@@ -21,7 +17,7 @@ public class ParserHelper extends BotProperties {
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
     static final CreateHandler createHandler = new CreateHandler();
     static final AddHandler notifyHandler = new AddHandler();
-    static final String directoryPath = "src/main/resources";
+    static final String directoryPath = "src/main/resources/userWords";
 
     public String getWordsPairs(Update update, long id) {
         String resultWordKeyValue = "";
