@@ -11,31 +11,31 @@ public class ExamHandler {
     private final Messages messages = new Messages();
 
     public boolean getСhoice(long chatId) {
-
+        List<String> pairs = setRightChoice(chatId);
         String fileName = "userWords" + chatId + ".csv";
         // Создание объекта File для проверки наличия файла
-        File file = new File("src/main/resources", fileName);
+        File file = new File("src/main/resources/user_words/", fileName);
         boolean foundFile = false;
 
         if (file.exists() && !file.isDirectory()) {
             foundFile = true;
-            List<String> wrongWord = setWrongWords();
-            String rightChoice = setRightChoice(chatId);
-            String rightChoiceTranslation = parserHelper.translate(rightChoice);
+            List<String> wrongWord = setWrongWords(chatId);
+            String rightChoice = pairs.get(1);
+            String rightChoiceTranslation = pairs.get(0);
 
-            messages.setFourСhoicesToExam(chatId, rightChoice, rightChoiceTranslation, wrongWord);
+            messages.setFourChoicesToExam(chatId, rightChoice, rightChoiceTranslation, wrongWord);
         }
 
         return foundFile;
     }
 
-    public List<String> setWrongWords() {
-        try (CSVReader br = new CSVReader(new FileReader("src/main/resources/words.txt"))) {
+    public List<String> setWrongWords(long chatId) {
+        try (CSVReader br = new CSVReader(new FileReader("src/main/resources/user_words/userWords" + chatId + ".csv"))) {
             List<String> wrongWord = new ArrayList<>();
             List<String[]> word = br.readAll();
 
             for (int i = 0; i < 3; i++) {
-                wrongWord.add(Arrays.toString(word.get(new Random().nextInt(1000))));
+                wrongWord.add(word.get(new Random().nextInt(word.size()))[1]);
             }
 
             return wrongWord;
@@ -46,16 +46,19 @@ public class ExamHandler {
         return new ArrayList<>();
     }
 
-    public String setRightChoice(long chatId) {
-        try (CSVReader br = new CSVReader(new FileReader("src/main/resources/userWords" + chatId + ".csv"))) {
-            List<String[]> word = br.readAll();
+    public List<String> setRightChoice(long chatId) {
+        List<String> wordPairs;
 
-            return word.get(new Random().nextInt(word.size()))[0];
+        try (CSVReader br = new CSVReader(new FileReader("src/main/resources/user_words/userWords" + chatId + ".csv"))) {
+            List<String[]> word = br.readAll();
+            int randomIndex = new Random().nextInt(word.size());
+            wordPairs = List.of(word.get(randomIndex)[0], word.get(randomIndex)[1]);
+            System.out.println(wordPairs);
+            return wordPairs;
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return "";
+        return new ArrayList<>();
     }
-
 }
