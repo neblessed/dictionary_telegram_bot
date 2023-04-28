@@ -1,6 +1,5 @@
 package api_communication;
 
-import api_communication.CSV_handler.CreateHandler;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import api_communication.CSV_handler.AddHandler;
 import config.BotProperties;
@@ -15,7 +14,6 @@ import static io.restassured.RestAssured.given;
 public class ParserHelper extends BotProperties {
     static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
-    static final CreateHandler createHandler = new CreateHandler();
     static final AddHandler notifyHandler = new AddHandler();
     static final String directoryPath = "src/main/resources/user_words";
 

@@ -9,7 +9,6 @@ import java.util.*;
 
 public class ExamHandler {
 
-    private final ParserHelper parserHelper = new ParserHelper();
     private final Messages messages = new Messages();
 
     public boolean getChoice(long chatId) {
@@ -51,8 +50,9 @@ public class ExamHandler {
     public List<String> setRightChoice(long chatId) {
         List<String> wordPairs;
         String path = "src/main/resources/user_words/userWords" + chatId + ".csv";
+
         try (CSVReader br = new CSVReader(new FileReader(path));
-             CSVWriter writer = new CSVWriter(new FileWriter(path, true))) {
+            CSVWriter writer = new CSVWriter(new FileWriter(path, true))) {
             List<String[]> word = br.readAll();
             //создаю рандомный индекс заранее
             int randomIndex = new Random().nextInt(word.size());
