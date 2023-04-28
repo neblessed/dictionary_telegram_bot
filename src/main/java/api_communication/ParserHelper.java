@@ -1,12 +1,11 @@
 package api_communication;
 
+import api_communication.CSV_handler.CreateHandler;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import api_communication.CSV_handler.AddHandler;
+import config.BotProperties;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import config.BotProperties;
-import com.opencsv.CSVWriter;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 import java.io.*;
 import java.util.*;
@@ -16,8 +15,11 @@ import static io.restassured.RestAssured.given;
 public class ParserHelper extends BotProperties {
     static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
+    static final CreateHandler createHandler = new CreateHandler();
+    static final AddHandler notifyHandler = new AddHandler();
+    static final String directoryPath = "src/main/resources/userWords";
 
-    public String getWordsPairs(Update update) {
+    public String getWordsPairs(Update update, long id) {
         String resultWordKeyValue = "";
         parseWordsFromFile(parseUserLimit(update)); //Парсинг из файла
         translateWords(wordsCollection); //Перевод слов
@@ -29,7 +31,15 @@ public class ParserHelper extends BotProperties {
         }
 
         //Парсинг в файл двух коллекций
-        parseToExamFile("src/main/resources/exam.csv", wordsCollection, translatedWordsCollection);
+        String fileName = "userWords" + id + ".csv";
+        // Создание объекта File для проверки наличия файла
+        File file = new File(directoryPath, fileName);
+
+        if (file.exists() && !file.isDirectory()) {
+            createHandler.createCVS(directoryPath + fileName, wordsCollection, translatedWordsCollection);
+        } else {
+            notifyHandler.addCSV(directoryPath + fileName, wordsCollection, translatedWordsCollection);
+        }
 
         //Очистка коллекций со словами
         wordsCollection.clear();
@@ -37,13 +47,13 @@ public class ParserHelper extends BotProperties {
         return resultWordKeyValue;
     }
 
-    public static void translateWords(List<String> words) {
+    public void translateWords(List<String> words) {
         for (String word : words) {
             translatedWordsCollection.add(translate(word));
         }
     }
 
-    public static String translate(String word) {
+    public String translate(String word) {
         return given()
                 .get("https://translation.googleapis.com/language/translate/v2?key=" + TRANSLATION_API_KEY + "&q=" + word + "&source=en&target=ru")
                 .then().extract().jsonPath()
@@ -52,7 +62,7 @@ public class ParserHelper extends BotProperties {
                 .replace("]", "");
     }
 
-    public static void parseWordsFromFile(int wordsQuantity) {
+    public void parseWordsFromFile(int wordsQuantity) {
         List<String> parsedEngWords = new ArrayList<>(); //Коллекция спарсеных слов
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/words.txt"))) {
             String line;

@@ -51,6 +51,8 @@ public class BotController extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Messages messagesClass = new Messages();
+        ExamHandler examHandler = new ExamHandler();
+
         if (update.hasMessage()) {
             var msg = update.getMessage();
             var user = msg.getFrom();
@@ -59,22 +61,47 @@ public class BotController extends TelegramLongPollingBot {
             switch (msg.getText()) {
                 case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", Keyboards.mainMenu());
                 case "Изучить слова 📚" -> {
-                    sendText(chatId, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
-                    sendText(chatId, new ParserHelper().getWordsPairs(update), Keyboards.mainMenu());
+                    sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
+                    sendText(id, new ParserHelper().getWordsPairs(update, id), Keyboards.mainMenu());
                 }
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
+                case "Запустить тестирование 🍀" -> {
+                    if (!examHandler.getСhoice(id)) {
+                        sendText(id, "Вы не изучили ни одно слова", Keyboards.mainMenu());
+                    }
+                }
             }
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
-            String data = callbackQuery.getData();
-            long chatIdFromQuery = callbackQuery.getMessage().getChatId();
+            var data = callbackQuery.getData();
+            long id = callbackQuery.getMessage().getChatId();
+
             switch (data) {
-                case "five_btn" -> setLimit(findUserLimit(update, 5));
-                case "fifteen_btn" -> setLimit(findUserLimit(update, 15));
-                case "twenty_btn" -> setLimit(findUserLimit(update, 20));
-                default -> setLimit(findUserLimit(update, 10));
+                case "five_btn" -> {
+                    setLimit(findUserLimit(update, 5));
+                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                }
+                case "fifteen_btn" -> {
+                    setLimit(findUserLimit(update, 15));
+                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                }
+                case "twenty_btn" -> {
+                    setLimit(findUserLimit(update, 20));
+                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                }
+                case "ten_btn" -> {
+                    setLimit(findUserLimit(update, 10));
+                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                }
+                case "btn_wrong1", "btn_wrong2", "btn_wrong3" -> {
+                    sendText(id, "Не верный выбор перевода", Keyboards.mainMenu());
+                    examHandler.getСhoice(id);
+                }
+                default -> {
+                    sendText(id, "Верно!", Keyboards.mainMenu());
+                    examHandler.getСhoice(id);
+                }
             }
-            sendText(chatIdFromQuery, "Новый лимит установлен ✅", Keyboards.mainMenu());
         }
     }
 
