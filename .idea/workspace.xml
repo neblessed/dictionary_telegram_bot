@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="изменения в методе setWordsLimit">
+    <list default="true" id="91f9bbe0-d216-468b-af68-2c98bf700d2e" name="Changes" comment="добавление логики Экзамена">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_communication/ParserHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +103,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682093786922</updated>
-      <workItem from="1682524682962" duration="13626000" />
+      <workItem from="1682524682962" duration="14736000" />
     </task>
     <task id="LOCAL-00001" summary="add dependencies">
       <created>1682094199815</created>
@@ -212,12 +210,12 @@
       <option name="project" value="LOCAL" />
       <updated>1682196286437</updated>
     </task>
-    <task id="LOCAL-00016" summary="доработал парсер для exam.csv">
-      <created>1682200769243</created>
+    <task id="LOCAL-00016" summary="добавление логики Экзамена">
+      <created>1682623651535</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1682200769243</updated>
+      <updated>1682623651535</updated>
     </task>
     <task id="LOCAL-00017" summary="написал keyboard для лимита слов в день">
       <created>1682200787678</created>
@@ -254,7 +252,7 @@
       <option name="project" value="LOCAL" />
       <updated>1682437881687</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +312,8 @@
     <MESSAGE value="дописал inlineKeyboardButtons для установки лимита слов в день + добавил обработку нажатий" />
     <MESSAGE value="CSVWriter / writeColumnNames / applyQuotesToAll == true" />
     <MESSAGE value="pom.xml / Commons-csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="pom.xml / Commons-csv" />
+    <MESSAGE value="добавление логики Экзамена" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавление логики Экзамена" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
