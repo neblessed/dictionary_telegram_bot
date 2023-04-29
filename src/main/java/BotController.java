@@ -2,6 +2,7 @@ import api_communication.ParserHelper;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
+import exam.ExamCounter;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,13 +13,13 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static api_communication.ParserHelper.*;
 
 public class BotController extends TelegramLongPollingBot {
     private int limit = 10; //Лимит слов в день
+    private int limitExam = 15; //Лимит экзамена
 
     public static void main(String[] args) throws TelegramApiException {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
@@ -52,6 +53,7 @@ public class BotController extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         Messages messagesClass = new Messages();
         ExamHandler examHandler = new ExamHandler();
+        ExamCounter examCounter = new ExamCounter();
 
         if (update.hasMessage()) {
             var msg = update.getMessage();
@@ -67,12 +69,12 @@ public class BotController extends TelegramLongPollingBot {
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
                 case "Запустить тестирование 🍀" -> examHandler.getChoice(id);
                 case "Завершить тестирование досрочно 🏃‍♂️" ->
-                        sendText(id, "[Здесь будет статистика]", Keyboards.mainMenu());
+                        sendText(id, examCounter.getStatistics(id), Keyboards.mainMenu());
 
             }
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
-            var data = callbackQuery.getData();
+            String data = callbackQuery.getData();
             long id = callbackQuery.getMessage().getChatId();
 
             switch (data) {
@@ -94,13 +96,23 @@ public class BotController extends TelegramLongPollingBot {
                 }
                 case "btn_wrong1", "btn_wrong2", "btn_wrong3" -> {
                     sendText(id, "Не правильно ❌", Keyboards.examMenu());
-                    examHandler.getChoice(id);
+
+                    String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
+
+                    examCounter.addExamTracker(id, engWord, false);
                     // messagesClass.deleteRecentExamMessage(update);
+
+                    examHandler.getChoice(id);
                 }
                 default -> {
                     sendText(id, "Правильно 👍", Keyboards.examMenu());
-                    examHandler.getChoice(id);
+
+                    String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
+
+                    examCounter.addExamTracker(id, engWord, true);
                     // messagesClass.deleteRecentExamMessage(update);
+
+                    examHandler.getChoice(id);
                 }
             }
         }
