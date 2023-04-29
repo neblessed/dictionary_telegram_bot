@@ -18,13 +18,15 @@ public class ExamCounter {
         pairWord[0] = engWord;
         pairWord[1] = rusWord.trim();
         pairWord[2] = Boolean.toString(result);
-        StringBuffer fileName = new StringBuffer();
-        fileName.append("userExam");
-        fileName.append(chatID);
-        fileName.append(".txt");
+        StringBuffer path = new StringBuffer();
+        path.append(directoryPath);
+        path.append("/");
+        path.append("userExam");
+        path.append(chatID);
+        path.append(".txt");
 
         wordsCollection.add(pairWord);
-        AddHandler.addCSV(directoryPath + "/" + fileName, wordsCollection);
+        AddHandler.addCSV(path.toString(), wordsCollection);
         wordsCollection.clear();
     }
 
@@ -46,13 +48,16 @@ public class ExamCounter {
     }
 
     public String getStatistics(long chatID) {
-        String path = "src/main/resources/user_exam/userExam" + chatID + ".txt";
+        StringBuffer path = new StringBuffer();
+        path.append("src/main/resources/user_exam/userExam");
+        path.append(chatID);
+        path.append(".txt");
         int positiveAnswers = 0;
         int negativeAnswers = 0;
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("Правильных ответов : ");
 
-        try (CSVReader br = new CSVReader(new FileReader(path))) {
+        try (CSVReader br = new CSVReader(new FileReader(path.toString()))) {
             List<String[]> words = br.readAll();
 
             for (String[] word : words) {
