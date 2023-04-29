@@ -93,14 +93,14 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
                 }
                 case "btn_wrong1", "btn_wrong2", "btn_wrong3" -> {
-                    sendText(id, "Не правильно 😔", Keyboards.examMenu());
+                    sendText(id, "Не правильно ❌", Keyboards.examMenu());
                     examHandler.getChoice(id);
-                    messagesClass.deleteRecentExamMessage(update);
+                    // messagesClass.deleteRecentExamMessage(update);
                 }
                 default -> {
                     sendText(id, "Правильно 👍", Keyboards.examMenu());
                     examHandler.getChoice(id);
-                    messagesClass.deleteRecentExamMessage(update);
+                    // messagesClass.deleteRecentExamMessage(update);
                 }
             }
         }
