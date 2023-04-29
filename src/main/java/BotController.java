@@ -67,9 +67,7 @@ public class BotController extends TelegramLongPollingBot {
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
                 case "Запустить тестирование 🍀" -> {
                     //TODO переделать реализацию (возможно добавить обработку file(size) в самом методе getChoice
-                    if (!examHandler.getChoice(id)) {
-                        sendText(id, "Вы не изучили ни одно слова", Keyboards.mainMenu());
-                    }
+                    examHandler.getChoice(id);
                 }
             }
         } else if (update.hasCallbackQuery()) {
