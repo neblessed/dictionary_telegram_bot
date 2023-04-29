@@ -65,10 +65,8 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, new ParserHelper().getWordsPairs(update, id), Keyboards.mainMenu());
                 }
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
-                case "Запустить тестирование 🍀" -> {
-                    //TODO переделать реализацию (возможно добавить обработку file(size) в самом методе getChoice
-                    examHandler.getChoice(id);
-                }
+                case "Запустить тестирование 🍀" -> examHandler.getChoice(id);
+
             }
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
@@ -95,10 +93,13 @@ public class BotController extends TelegramLongPollingBot {
                 case "btn_wrong1", "btn_wrong2", "btn_wrong3" -> {
                     sendText(id, "Не правильно 😔", Keyboards.mainMenu());
                     examHandler.getChoice(id);
+                    messagesClass.deleteRecentExamMessage(update);
                 }
                 default -> {
+                    //TODO добавить и удаление ответа на выбор пользователя
                     sendText(id, "Правильно 👍", Keyboards.mainMenu());
                     examHandler.getChoice(id);
+                    messagesClass.deleteRecentExamMessage(update);
                 }
             }
         }
