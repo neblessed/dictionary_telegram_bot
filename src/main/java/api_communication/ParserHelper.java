@@ -13,7 +13,7 @@ import java.util.*;
 import static io.restassured.RestAssured.given;
 
 public class ParserHelper extends BotProperties {
-    static List<String> wordsCollection = new ArrayList<>(); //Коллекция слов
+    static List<String[]> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
     static final AddHandler notifyHandler = new AddHandler();
     static final String directoryPath = "src/main/resources/user_words";
@@ -21,18 +21,17 @@ public class ParserHelper extends BotProperties {
     public String getWordsPairs(Update update, long id) {
         String resultWordKeyValue = "";
         parseWordsFromFile(parseUserLimit(update)); //Парсинг из файла
-        translateWords(wordsCollection); //Перевод слов
 
         //Объединение Слово - перевод в одну строку, для дальнейшего вывода в бота
         for (int i = 0; i < parseUserLimit(update); i++) {
             resultWordKeyValue = resultWordKeyValue
-                    .concat(wordsCollection.get(i) + " - " + translatedWordsCollection.get(i) + "\n");
+                    .concat(wordsCollection.get(i)[0] + " - " + wordsCollection.get(i)[1] + "\n");
         }
-
         //Имя создаваемого файла
         String fileName = "userWords" + id + ".csv";
+
         //Создание файла в директории user_words
-        AddHandler.addCSV(directoryPath + "/" + fileName, wordsCollection, translatedWordsCollection);
+        AddHandler.addCSV(directoryPath + "/" + fileName, wordsCollection);
 
         //Очистка коллекций со словами после выдачи пользователю
         wordsCollection.clear();
@@ -46,7 +45,6 @@ public class ParserHelper extends BotProperties {
         }
     }
 
-    //TODO перейти с API на парсинг перевода с файла. Хранить данные в файле в формате word,translation
     public String translate(String word) {
         return given()
                 .get("https://translation.googleapis.com/language/translate/v2?key=" + TRANSLATION_API_KEY + "&q=" + word + "&source=en&target=ru")
@@ -57,12 +55,9 @@ public class ParserHelper extends BotProperties {
     }
 
     public void parseWordsFromFile(int wordsQuantity) {
-        List<String> parsedEngWords = new ArrayList<>(); //Коллекция спарсеных слов
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/words.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                parsedEngWords.add(line);
-            }
+        List<String[]> parsedEngWords = new ArrayList<>(); //Коллекция спарсеных слов
+        try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/wordst.txt"))) {
+            parsedEngWords = reader.readAll();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -31,4 +31,23 @@ public class Keyboards {
         keyboardMarkup.setKeyboard(keyboard);
         return keyboardMarkup;
     }
+
+    static ReplyKeyboardMarkup examMenu() {
+        //Использованные кнопки в меню
+        var abortExam = "Завершить тестирование досрочно 🏃‍♂️";
+
+        // Создаю объект клавиатуры
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+
+        // Создаю список строк с названиями кнопок
+        List<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow row1 = new KeyboardRow();
+        row1.add(abortExam);
+        keyboard.add(row1);
+
+        // Устанавливаю клавиатуру
+        keyboardMarkup.setResizeKeyboard(true);
+        keyboardMarkup.setKeyboard(keyboard);
+        return keyboardMarkup;
+    }
 }
