@@ -1,5 +1,6 @@
 package api_communication;
 
+import io.restassured.response.Response;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import api_communication.CSV_handler.AddHandler;
 import config.BotProperties;
@@ -45,6 +46,7 @@ public class ParserHelper extends BotProperties {
         }
     }
 
+    //TODO перейти с API на парсинг перевода с файла. Хранить данные в файле в формате word,translation
     public String translate(String word) {
         return given()
                 .get("https://translation.googleapis.com/language/translate/v2?key=" + TRANSLATION_API_KEY + "&q=" + word + "&source=en&target=ru")
