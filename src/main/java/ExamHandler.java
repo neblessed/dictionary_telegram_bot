@@ -48,7 +48,7 @@ public class ExamHandler {
         Messages messageClass = new Messages();
         List<String> wordPairs;
         String path = "src/main/resources/user_words/userWords" + chatId + ".csv";
-        File file = new File("path");
+        File file = new File(path);
         if (file.exists()) {
             try (CSVReader br = new CSVReader(new FileReader(path));
                  CSVWriter writer = new CSVWriter(new FileWriter(path, true))) {
