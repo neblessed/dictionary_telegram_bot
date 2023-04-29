@@ -11,7 +11,7 @@ public class AddHandler {
     public static void addCSV(String path, List<String[]> words) {
         try (CSVWriter writer = new CSVWriter(new FileWriter(path, true))) {
             for (int i = 0; i < words.size(); i++) {
-                String[] arr = {words.get(i)[0], words.get(i)[1]};
+                String[] arr = words.get(i);
                 writer.writeNext(arr, false);
             }
         } catch (IOException e) {
