@@ -50,33 +50,37 @@ public class Messages extends BotController {
     }
 
     public void setFourChoicesToExam(long chatId,
-                                     String rightChoice,
-                                     String rightChoiceTranslation,
+                                     String rusWord,
+                                     String engWord,
                                      List<String> wrongWord) {
+
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
         List<InlineKeyboardButton> rowInLine = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++) {
-            rowInLine.add(InlineKeyboardButton.builder()
-                    .text(wrongWord.get(i).toLowerCase())
-                    .callbackData("btn_wrong" + i)
-                    .build());
-        }
-
-        InlineKeyboardButton fourthChoice = InlineKeyboardButton.builder()
-                .text(rightChoice.toLowerCase())
+        rowInLine.add(InlineKeyboardButton.builder()
+                .text(wrongWord.get(0).toLowerCase())
+                .callbackData("btn_wrong1")
+                .build());
+        rowInLine.add(InlineKeyboardButton.builder()
+                .text(wrongWord.get(1).toLowerCase())
+                .callbackData("btn_wrong3")
+                .build());
+        rowInLine.add(InlineKeyboardButton.builder()
+                .text(wrongWord.get(2).toLowerCase())
+                .callbackData("btn_wrong3")
+                .build());
+        rowInLine.add(InlineKeyboardButton.builder()
+                .text(rusWord.toLowerCase())
                 .callbackData("rightChoice")
-                .build();
-
-        rowInLine.add(fourthChoice);
+                .build());
         Collections.shuffle(rowInLine);
         rowsInLine.add(rowInLine);
         inlineKeyboardMarkup.setKeyboard(rowsInLine);
 
         SendMessage msg = SendMessage.builder()
                 .chatId(String.valueOf(chatId))
-                .text("Как переводится: " + rightChoiceTranslation)
+                .text("Как переводится: " + engWord)
                 .replyMarkup(inlineKeyboardMarkup)
                 .build();
         try {

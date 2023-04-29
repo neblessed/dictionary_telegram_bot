@@ -19,10 +19,10 @@ public class ExamHandler {
 
             if (file.exists() && !file.isDirectory()) {
                 List<String> wrongWord = setWrongWords(chatId);
-                String rightChoice = pairs.get(1);
-                String rightChoiceTranslation = pairs.get(0);
+                String rusWord = pairs.get(1);
+                String engWord = pairs.get(0);
 
-                messages.setFourChoicesToExam(chatId, rightChoice, rightChoiceTranslation, wrongWord);
+                messages.setFourChoicesToExam(chatId, rusWord, engWord, wrongWord);
             }
         }
     }
