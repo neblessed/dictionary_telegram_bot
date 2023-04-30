@@ -94,7 +94,7 @@ public class ParserHelper extends BotProperties {
             for (String[] element : allData) {
                 if (element[0].equals(String.valueOf(chatId))) {
                     return Integer.parseInt(element[1]);
-                } else return 10;
+                }
             }
         } catch (IOException | CsvException e) {
             throw new RuntimeException(e);

@@ -100,20 +100,16 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, "Не правильно ❌", Keyboards.examMenu());
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
-
                     examCounter.addExamTracker(id, engWord, false);
                     // messagesClass.deleteRecentExamMessage(update);
-
                     examHandler.getChoice(id);
                 }
                 default -> {
                     sendText(id, "Правильно 👍", Keyboards.examMenu());
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
-
                     examCounter.addExamTracker(id, engWord, true);
                     // messagesClass.deleteRecentExamMessage(update);
-
                     examHandler.getChoice(id);
                 }
             }
