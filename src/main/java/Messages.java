@@ -57,25 +57,33 @@ public class Messages extends BotController {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
         List<InlineKeyboardButton> rowInLine = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine2 = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine3 = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine4 = new ArrayList<>();
 
         rowInLine.add(InlineKeyboardButton.builder()
                 .text(wrongWord.get(0).toLowerCase())
                 .callbackData("btn_wrong1")
                 .build());
-        rowInLine.add(InlineKeyboardButton.builder()
+        rowInLine2.add(InlineKeyboardButton.builder()
                 .text(wrongWord.get(1).toLowerCase())
                 .callbackData("btn_wrong3")
                 .build());
-        rowInLine.add(InlineKeyboardButton.builder()
+        rowInLine3.add(InlineKeyboardButton.builder()
                 .text(wrongWord.get(2).toLowerCase())
                 .callbackData("btn_wrong3")
                 .build());
-        rowInLine.add(InlineKeyboardButton.builder()
+        rowInLine4.add(InlineKeyboardButton.builder()
                 .text(rusWord.toLowerCase())
                 .callbackData("rightChoice")
                 .build());
-        Collections.shuffle(rowInLine);
+
         rowsInLine.add(rowInLine);
+        rowsInLine.add(rowInLine2);
+        rowsInLine.add(rowInLine3);
+        rowsInLine.add(rowInLine4);
+        Collections.shuffle(rowsInLine);
+
         inlineKeyboardMarkup.setKeyboard(rowsInLine);
 
         SendMessage msg = SendMessage.builder()
