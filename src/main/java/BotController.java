@@ -19,7 +19,6 @@ import static api_communication.ParserHelper.*;
 
 public class BotController extends TelegramLongPollingBot {
     private int limit = 10; //Лимит слов в день
-    private int limitExam = 15; //Лимит экзамена
 
     public static void main(String[] args) throws TelegramApiException {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
@@ -80,41 +79,49 @@ public class BotController extends TelegramLongPollingBot {
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
             String data = callbackQuery.getData();
-            long id = callbackQuery.getMessage().getChatId();
+            long chatId = callbackQuery.getMessage().getChatId();
 
             switch (data) {
                 case "five_btn" -> {
                     setLimit(findUserLimit(update, 5));
-                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    sendText(chatId, "Новый лимит установлен ✅", Keyboards.mainMenu());
                 }
                 case "fifteen_btn" -> {
                     setLimit(findUserLimit(update, 15));
-                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    sendText(chatId, "Новый лимит установлен ✅", Keyboards.mainMenu());
                 }
                 case "twenty_btn" -> {
                     setLimit(findUserLimit(update, 20));
-                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    sendText(chatId, "Новый лимит установлен ✅", Keyboards.mainMenu());
                 }
                 case "ten_btn" -> {
                     setLimit(findUserLimit(update, 10));
-                    sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    sendText(chatId, "Новый лимит установлен ✅", Keyboards.mainMenu());
                 }
                 case "btn_wrong1", "btn_wrong2", "btn_wrong3" -> {
-                    sendText(id, "Не правильно ❌", Keyboards.examMenu());
+                    sendText(chatId, "Не правильно ❌", Keyboards.examMenu());
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
-                    examStatistics.addExamTracker(id, engWord, false);
+                    examStatistics.addExamTracker(chatId, engWord, false);
                     // messagesClass.deleteRecentExamMessage(update);
-                    examHandler.getChoice(id);
+                    if (checkWordsInFileUserWords(chatId)){
+                        examHandler.getChoice(chatId);
+                    } else {
+                        sendText(chatId, "Вы изучили все слова! Поздравляю!", Keyboards.mainMenu());
+                    }
                 }
                 default -> {
-                    sendText(id, "Правильно 👍", Keyboards.examMenu());
+                    sendText(chatId, "Правильно 👍", Keyboards.examMenu());
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
-                    examStatistics.addExamTracker(id, engWord, true);
+                    examStatistics.addExamTracker(chatId, engWord, true);
                     // messagesClass.deleteRecentExamMessage(update);
-                    examHandler.deletePositiveChoisesFromFileUserWord(id, engWord);
-                    examHandler.getChoice(id);
+                    examHandler.deletePositiveChoisesFromFileUserWord(chatId, engWord);
+                    if (checkWordsInFileUserWords(chatId)){
+                        examHandler.getChoice(chatId);
+                    } else {
+                        sendText(chatId, "Вы изучили все слова! Поздравляю!", Keyboards.mainMenu());
+                    }
                 }
             }
         }
@@ -147,5 +154,26 @@ public class BotController extends TelegramLongPollingBot {
         } catch (CsvException | IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean checkWordsInFileUserWords(long chatID) {
+        StringBuffer path = new StringBuffer();
+        path.append("src/main/resources/user_words/userWords");
+        path.append(chatID);
+        path.append(".csv");
+
+        try (CSVReader br = new CSVReader(new FileReader(path.toString()))){
+            List<String[]> words = br.readAll();
+
+            if (words.isEmpty()) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
