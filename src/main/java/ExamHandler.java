@@ -28,14 +28,13 @@ public class ExamHandler {
     }
 
     public List<String> setWrongWords(long chatId) {
-        try (CSVReader br = new CSVReader(new FileReader("src/main/resources/user_words/userWords" + chatId + ".csv"))) {
+        try (CSVReader br = new CSVReader(new FileReader("src/main/resources/wordst.txt"))) {
             List<String> wrongWord = new ArrayList<>();
             List<String[]> word = br.readAll();
 
             for (int i = 0; i < 3; i++) {
-                wrongWord.add(word.get(new Random().nextInt(word.size()))[1]);
+                wrongWord.add(word.get(new Random().nextInt(word.size()))[1].trim());
             }
-
             return wrongWord;
         } catch (Exception e) {
             e.printStackTrace();
