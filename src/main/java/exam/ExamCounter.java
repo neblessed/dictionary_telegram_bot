@@ -2,8 +2,13 @@ package exam;
 
 import api_communication.CSV_handler.AddHandler;
 import com.opencsv.CSVReader;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +60,7 @@ public class ExamCounter {
         int positiveAnswers = 0;
         int negativeAnswers = 0;
         StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("Ваша статистика 📑 \n");
         stringBuffer.append("Правильных ответов : ");
 
         try (CSVReader br = new CSVReader(new FileReader(path.toString()))) {
@@ -77,5 +83,20 @@ public class ExamCounter {
         stringBuffer.append(negativeAnswers);
 
         return stringBuffer.toString();
+    }
+
+    public void deleteStatistic(Update update) {
+        long chatId = update.getMessage().getChatId();
+        StringBuffer path = new StringBuffer();
+        path.append("src/main/resources/user_exam/userExam");
+        path.append(chatId);
+        path.append(".txt");
+        Path filePath = Paths.get(path.toString());
+        try {
+            Files.delete(filePath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
