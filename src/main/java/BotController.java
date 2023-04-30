@@ -77,7 +77,10 @@ public class BotController extends TelegramLongPollingBot {
                 case "Мои настройки ⚙" ->
                         sendText(id, "В этом разделе ты можешь установить лимит слов или сбросить свой прогресс 👇", Keyboards.settingsMenu());
                 case "Вернуться в меню 🏃‍♂️" -> sendText(id, "Воспользуйся меню 👇", Keyboards.mainMenu());
-                case "Обнулить свой прогресс ♻" -> sendText(id,"[Здесь будет обнуление прогресса]", Keyboards.mainMenu());
+                case "Обнулить свой прогресс ♻" -> {
+                    sendText(id, "Ваш прогресс обнулён 💿", Keyboards.mainMenu());
+                    ParserHelper.replaceToNew(id);
+                }
             }
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
@@ -106,11 +109,11 @@ public class BotController extends TelegramLongPollingBot {
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
                     examStatistics.addExamTracker(chatId, engWord, false);
-                    // messagesClass.deleteRecentExamMessage(update);
-                    if (checkWordsInFileUserWords(chatId)){
+                    if (checkWordsInFileUserWords(chatId)) {
                         examHandler.getChoice(chatId);
                     } else {
-                        sendText(chatId, "Вы изучили все слова! Поздравляю!", Keyboards.mainMenu());
+                        sendText(chatId, "Тест завершён! Переходите к изучению новых слов ✅", Keyboards.mainMenu());
+                        // examHandler.deleteFileWhenExamEnded(chatId);
                     }
                 }
                 default -> {
@@ -118,12 +121,12 @@ public class BotController extends TelegramLongPollingBot {
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
                     examStatistics.addExamTracker(chatId, engWord, true);
-                    // messagesClass.deleteRecentExamMessage(update);
                     examHandler.deletePositiveChoisesFromFileUserWord(chatId, engWord);
-                    if (checkWordsInFileUserWords(chatId)){
+                    if (checkWordsInFileUserWords(chatId)) {
                         examHandler.getChoice(chatId);
                     } else {
-                        sendText(chatId, "Вы изучили все слова! Поздравляю!", Keyboards.mainMenu());
+                        sendText(chatId, "Тест завершён! Переходите к изучению новых слов ✅", Keyboards.mainMenu());
+                        //examHandler.deleteFileWhenExamEnded(chatId);
                     }
                 }
             }
@@ -161,18 +164,14 @@ public class BotController extends TelegramLongPollingBot {
 
     public boolean checkWordsInFileUserWords(long chatID) {
         StringBuffer path = new StringBuffer();
-        path.append("src/main/resources/user_words/userWords");
+        path.append("src/main/resources/user_words/wordsForExam");
         path.append(chatID);
         path.append(".csv");
 
-        try (CSVReader br = new CSVReader(new FileReader(path.toString()))){
+        try (CSVReader br = new CSVReader(new FileReader(path.toString()))) {
             List<String[]> words = br.readAll();
 
-            if (words.isEmpty()) {
-                return false;
-            } else {
-                return true;
-            }
+            return !words.isEmpty();
         } catch (Exception e) {
             e.printStackTrace();
         }
