@@ -2,7 +2,7 @@ import api_communication.ParserHelper;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
-import exam.ExamCounter;
+import examStatistics.ExamStatistics;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -53,7 +53,7 @@ public class BotController extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         Messages messagesClass = new Messages();
         ExamHandler examHandler = new ExamHandler();
-        ExamCounter examCounter = new ExamCounter();
+        ExamStatistics examStatistics = new ExamStatistics();
 
         if (update.hasMessage()) {
             var msg = update.getMessage();
@@ -67,10 +67,13 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, new ParserHelper().getWordsPairs(update, id), Keyboards.mainMenu());
                 }
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
-                case "Запустить тестирование 🍀" -> examHandler.getChoice(id);
+                case "Запустить тестирование 🍀" -> {
+                    examHandler.getChoice(id);
+                    examStatistics.deleteStatistic(update);
+                }
                 case "Завершить тестирование досрочно 🏃‍♂️" -> {
-                    sendText(id, examCounter.getStatistics(id), Keyboards.mainMenu());
-                    examCounter.deleteStatistic(update);
+                    sendText(id, examStatistics.getStatistics(id), Keyboards.mainMenu());
+                    examStatistics.deleteStatistic(update);
                 }
 
             }
@@ -100,7 +103,7 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, "Не правильно ❌", Keyboards.examMenu());
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
-                    examCounter.addExamTracker(id, engWord, false);
+                    examStatistics.addExamTracker(id, engWord, false);
                     // messagesClass.deleteRecentExamMessage(update);
                     examHandler.getChoice(id);
                 }
@@ -108,8 +111,9 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, "Правильно 👍", Keyboards.examMenu());
 
                     String engWord = callbackQuery.getMessage().getText().split(":")[1].trim();
-                    examCounter.addExamTracker(id, engWord, true);
+                    examStatistics.addExamTracker(id, engWord, true);
                     // messagesClass.deleteRecentExamMessage(update);
+                    examHandler.deletePositiveChoisesFromFileUserWord(id, engWord);
                     examHandler.getChoice(id);
                 }
             }

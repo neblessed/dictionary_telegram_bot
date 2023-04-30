@@ -1,4 +1,4 @@
-package exam;
+package examStatistics;
 
 import api_communication.CSV_handler.AddHandler;
 import com.opencsv.CSVReader;
@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExamCounter {
+public class ExamStatistics {
 
     static final String directoryPath = "src/main/resources/user_exam";
     static List<String[]> wordsCollection = new ArrayList<>();
@@ -36,7 +36,7 @@ public class ExamCounter {
     }
 
     public String translateWordFromFile(String endWord) {
-        List<String[]> parsedEngWords = new ArrayList<>();
+        List<String[]> parsedEngWords;
         try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/wordst.txt"))) {
             parsedEngWords = reader.readAll();
 
