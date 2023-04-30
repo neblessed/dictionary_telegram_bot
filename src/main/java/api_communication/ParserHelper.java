@@ -20,9 +20,10 @@ public class ParserHelper extends BotProperties {
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
     static final String directoryWithExamWords = "src/main/resources/user_words";
     static final String directoryWithWords = "src/main/resources/words/";
+    static final String mainWordsFileToLearn = "wordst.txt";
 
     public String getWordsPairs(Update update, long id) {
-        createIfFileNotExist(id, "wordst.txt");
+        createIfFileNotExist(id, mainWordsFileToLearn);
 
         String resultWordKeyValue = "";
         parseWordsFromFile(parseUserLimit(update)); //Парсинг из файла
@@ -61,7 +62,7 @@ public class ParserHelper extends BotProperties {
 
     public void parseWordsFromFile(int wordsQuantity) {
         List<String[]> parsedEngWords = new ArrayList<>(); //Коллекция спарсеных слов
-        try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/wordst.txt"))) {
+        try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/" + mainWordsFileToLearn))) {
             parsedEngWords = reader.readAll();
         } catch (Exception e) {
             e.printStackTrace();
@@ -111,7 +112,7 @@ public class ParserHelper extends BotProperties {
             List<Path> containFiles = Files.walk(Path.of(directoryWithWords)).toList();
             containFiles = containFiles.stream().filter(x -> x.getFileName().toString().contains(String.valueOf(id))).toList();
             Files.delete(containFiles.get(0));
-            createIfFileNotExist(id, "wordst.txt");
+            createIfFileNotExist(id, mainWordsFileToLearn);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
