@@ -68,8 +68,10 @@ public class BotController extends TelegramLongPollingBot {
                 }
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
                 case "Запустить тестирование 🍀" -> examHandler.getChoice(id);
-                case "Завершить тестирование досрочно 🏃‍♂️" ->
-                        sendText(id, examCounter.getStatistics(id), Keyboards.mainMenu());
+                case "Завершить тестирование досрочно 🏃‍♂️" -> {
+                    sendText(id, examCounter.getStatistics(id), Keyboards.mainMenu());
+                    examCounter.deleteStatistic(update);
+                }
 
             }
         } else if (update.hasCallbackQuery()) {
