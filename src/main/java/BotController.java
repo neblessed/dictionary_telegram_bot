@@ -74,7 +74,10 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, examStatistics.getStatistics(id), Keyboards.mainMenu());
                     examStatistics.deleteStatistic(update);
                 }
-
+                case "Мои настройки ⚙" ->
+                        sendText(id, "В этом разделе ты можешь установить лимит слов или сбросить свой прогресс 👇", Keyboards.settingsMenu());
+                case "Вернуться в меню 🏃‍♂️" -> sendText(id, "Воспользуйся меню 👇", Keyboards.mainMenu());
+                case "Обнулить свой прогресс ♻" -> sendText(id,"[Здесь будет обнуление прогресса]", Keyboards.mainMenu());
             }
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
