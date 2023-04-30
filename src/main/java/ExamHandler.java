@@ -1,9 +1,11 @@
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class ExamHandler {
@@ -13,12 +15,12 @@ public class ExamHandler {
     public void getChoice(long chatId) {
         List<String> pairs = setRightChoice(chatId);
         if (!pairs.isEmpty()) {
-            String fileName = "userWords" + chatId + ".csv";
+            String fileName = "wordsForExam" + chatId + ".csv";
             // Создание объекта File для проверки наличия файла
             File file = new File("src/main/resources/user_words/", fileName);
 
             if (file.exists() && !file.isDirectory()) {
-                List<String> wrongWord = setWrongWords(chatId);
+                List<String> wrongWord = setWrongWords();
                 String rusWord = pairs.get(1);
                 String engWord = pairs.get(0);
 
@@ -27,7 +29,7 @@ public class ExamHandler {
         }
     }
 
-    public List<String> setWrongWords(long chatId) {
+    public List<String> setWrongWords() {
         try (CSVReader br = new CSVReader(new FileReader("src/main/resources/wordst.txt"))) {
             List<String> wrongWord = new ArrayList<>();
             List<String[]> word = br.readAll();
@@ -46,7 +48,7 @@ public class ExamHandler {
     public List<String> setRightChoice(long chatId) {
         Messages messageClass = new Messages();
         List<String> wordPairs;
-        String path = "src/main/resources/user_words/userWords" + chatId + ".csv";
+        String path = "src/main/resources/user_words/wordsForExam" + chatId + ".csv";
         File file = new File(path);
         if (file.exists()) {
             try (CSVReader br = new CSVReader(new FileReader(path))) {
@@ -55,7 +57,6 @@ public class ExamHandler {
                     //создаю рандомный индекс заранее
                     int randomIndex = new Random().nextInt(word.size());
                     wordPairs = List.of(word.get(randomIndex)[0], word.get(randomIndex)[1]);
-          ;
                     return wordPairs;
                 }
             } catch (Exception e) {
@@ -70,7 +71,7 @@ public class ExamHandler {
     public void deletePositiveChoisesFromFileUserWord(long chatID, String engWord) {
         List<String[]> wordsToFile = new ArrayList<>();
         StringBuffer path = new StringBuffer();
-        path.append("src/main/resources/user_words/userWords");
+        path.append("src/main/resources/user_words/wordsForExam");
         path.append(chatID);
         path.append(".csv");
 
@@ -91,6 +92,18 @@ public class ExamHandler {
             writer.writeAll(wordsToFile, false);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void deleteFileWhenExamEnded(long chatId) {
+        StringBuffer path = new StringBuffer();
+        path.append("src/main/resources/user_words/wordsForExam");
+        path.append(chatId);
+        path.append(".csv");
+        try {
+            Files.delete(Paths.get(path.toString()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

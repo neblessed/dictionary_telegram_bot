@@ -1,5 +1,6 @@
 package api_communication;
 
+import com.opencsv.CSVWriter;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import api_communication.CSV_handler.AddHandler;
 import config.BotProperties;
@@ -7,6 +8,9 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 import static io.restassured.RestAssured.given;
@@ -14,9 +18,12 @@ import static io.restassured.RestAssured.given;
 public class ParserHelper extends BotProperties {
     static List<String[]> wordsCollection = new ArrayList<>(); //Коллекция слов
     static List<String> translatedWordsCollection = new ArrayList<>(); //Коллекция переведённых слов на русский
-    static final String directoryPath = "src/main/resources/user_words";
+    static final String directoryWithExamWords = "src/main/resources/user_words";
+    static final String directoryWithWords = "src/main/resources/words/";
 
     public String getWordsPairs(Update update, long id) {
+        createIfFileNotExist(id, "wordst.txt");
+
         String resultWordKeyValue = "";
         parseWordsFromFile(parseUserLimit(update)); //Парсинг из файла
 
@@ -28,9 +35,9 @@ public class ParserHelper extends BotProperties {
 
         //Путь до файла
         StringBuffer path = new StringBuffer();
-        path.append(directoryPath);
+        path.append(directoryWithExamWords);
         path.append("/");
-        path.append("userWords");
+        path.append("wordsForExam");
         path.append(id);
         path.append(".csv");
 
@@ -41,12 +48,6 @@ public class ParserHelper extends BotProperties {
         wordsCollection.clear();
         translatedWordsCollection.clear();
         return resultWordKeyValue;
-    }
-
-    public void translateWords(List<String> words) {
-        for (String word : words) {
-            translatedWordsCollection.add(translate(word));
-        }
     }
 
     public String translate(String word) {
@@ -72,20 +73,6 @@ public class ParserHelper extends BotProperties {
         }
     }
 
-    public static void parseToExamFile(String path, List<String> words, List<String> translatedWords) {
-        BufferedWriter writer;
-        try {
-            writer = new BufferedWriter(new FileWriter(path, true));
-            for (int i = 0; i < words.size(); i++) {
-                writer.append(words.get(i)).append(", ").append(translatedWords.get(i));
-                writer.newLine();
-            }
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static int parseUserLimit(Update update) {
         long chatId = update.getMessage().getChatId();
         String fileName = "src/main/resources/users_limits/limits.csv";
@@ -100,5 +87,33 @@ public class ParserHelper extends BotProperties {
             throw new RuntimeException(e);
         }
         return 10;
+    }
+
+    public static void createIfFileNotExist(long id, String catchFromFile) {
+        try {
+            List<Path> directory = Files.walk(Paths.get(directoryWithWords))
+                    .filter(x -> x.getFileName().toString()
+                            .contains(String.valueOf(id))).toList();
+
+            if (directory.isEmpty()) {
+                CSVReader reader = new CSVReader(new FileReader("src/main/resources/" + catchFromFile));
+                List<String[]> listToRelocate = reader.readAll();
+                CSVWriter writer = new CSVWriter(new FileWriter(directoryWithWords + "collection" + id + ".csv"));
+                writer.writeAll(listToRelocate, false);
+            }
+        } catch (IOException | CsvException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void replaceToNew(long id) {
+        try {
+            List<Path> containFiles = Files.walk(Path.of(directoryWithWords)).toList();
+            containFiles = containFiles.stream().filter(x -> x.getFileName().toString().contains(String.valueOf(id))).toList();
+            Files.delete(containFiles.get(0));
+            createIfFileNotExist(id, "wordst.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
