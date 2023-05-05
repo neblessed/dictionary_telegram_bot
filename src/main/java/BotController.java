@@ -3,10 +3,12 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import examStatistics.ExamStatistics;
+import org.checkerframework.checker.units.qual.A;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -58,6 +60,11 @@ public class BotController extends TelegramLongPollingBot {
             var msg = update.getMessage();
             var user = msg.getFrom();
             var id = user.getId();
+
+            long chat = msg.getChatId();
+            long vadim_admin = 765707926;
+            long sergei_admin = 351869653;
+
             long chatId = update.getMessage().getChatId();
             switch (msg.getText()) {
                 case "/start" -> sendText(id, "Привет, воспользуйся меню 👇", Keyboards.mainMenu());
@@ -74,14 +81,31 @@ public class BotController extends TelegramLongPollingBot {
                     sendText(id, examStatistics.getStatistics(id), Keyboards.mainMenu());
                     examStatistics.deleteStatistic(update);
                 }
-                case "Мои настройки ⚙" ->
+                case "Мои настройки ⚙" -> {
+                    if (chat == vadim_admin || chat == sergei_admin) {
+                        sendText(id, "Расширенная панель разработчика 🖥", Keyboards.adminMenu());
+                    } else {
                         sendText(id, "В этом разделе ты можешь установить лимит слов или сбросить свой прогресс 👇", Keyboards.settingsMenu());
+                    }
+                }
+                case "🎇 Добавить слова" -> {
+                    sendText(id, "Для добавления слов присылайте их в формате: английское слово, перевод", Keyboards.adminMenu());
+                }
+                case "🎇 Очистить коллекцию" -> {
+                    AdminHelper.clearWordsCollection();
+                    sendText(id, "Коллекция слов очищена ✅", Keyboards.adminMenu());
+                }
                 case "Вернуться в меню 🏃‍♂️" -> sendText(id, "Воспользуйся меню 👇", Keyboards.mainMenu());
                 case "Обнулить свой прогресс ♻" -> {
                     sendText(id, "Ваш прогресс обнулён 💿", Keyboards.mainMenu());
                     ParserHelper.replaceToNew(id);
                 }
             }
+
+            if ((chat == vadim_admin && msg.getText().contains(",")) || (chat == sergei_admin && msg.getText().contains(","))) {
+                sendText(id, "👣 Размер коллекции слов: " + AdminHelper.appendNewWords(update.getMessage().getText()), Keyboards.adminMenu());
+            }
+
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
             String data = callbackQuery.getData();

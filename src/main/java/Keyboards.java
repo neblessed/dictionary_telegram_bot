@@ -77,4 +77,37 @@ public class Keyboards {
         keyboardMarkup.setKeyboard(keyboard);
         return keyboardMarkup;
     }
+
+    static ReplyKeyboardMarkup adminMenu() {
+        //Использованные кнопки в меню
+        var wordLimit = "Дневной лимит слов 📈";
+        var resetProgress = "Обнулить свой прогресс ♻";
+        var goBack = "Вернуться в меню 🏃‍♂️";
+        var addWords = "🎇 Добавить слова";
+        var removeAllWords = "🎇 Очистить коллекцию";
+
+        // Создаю объект клавиатуры
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+
+        // Создаю список строк с названиями кнопок
+        List<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow row1 = new KeyboardRow();
+        row1.add(wordLimit);
+        KeyboardRow row2 = new KeyboardRow();
+        row2.add(resetProgress);
+        KeyboardRow row3 = new KeyboardRow();
+        row3.add(goBack);
+        KeyboardRow row4 = new KeyboardRow();
+        row4.add(addWords);
+        row4.add(removeAllWords);
+        keyboard.add(row1);
+        keyboard.add(row2);
+        keyboard.add(row3);
+        keyboard.add(row4);
+
+        // Устанавливаю клавиатуру
+        keyboardMarkup.setResizeKeyboard(true);
+        keyboardMarkup.setKeyboard(keyboard);
+        return keyboardMarkup;
+    }
 }
