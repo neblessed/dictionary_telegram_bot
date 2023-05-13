@@ -2,6 +2,7 @@ import api_communication.ParserHelper;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
+import db.DBHandler;
 import exam.ExamCounter;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -54,6 +55,9 @@ public class BotController extends TelegramLongPollingBot {
         Messages messagesClass = new Messages();
         ExamHandler examHandler = new ExamHandler();
         ExamCounter examCounter = new ExamCounter();
+        DBHandler dbHandler = new DBHandler();
+
+        dbHandler.createTable();
 
         if (update.hasMessage()) {
             var msg = update.getMessage();
@@ -65,6 +69,8 @@ public class BotController extends TelegramLongPollingBot {
                 case "Изучить слова 📚" -> {
                     sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
                     sendText(id, new ParserHelper().getWordsPairs(update, id), Keyboards.mainMenu());
+                    //dbHandler.connectionToDB();
+                    dbHandler.insertUserToDB(id.intValue());
                 }
                 case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
                 case "Запустить тестирование 🍀" -> examHandler.getChoice(id);
