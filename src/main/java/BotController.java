@@ -57,8 +57,6 @@ public class BotController extends TelegramLongPollingBot {
         ExamCounter examCounter = new ExamCounter();
         DBHandler dbHandler = new DBHandler();
 
-        dbHandler.createTable();
-
         if (update.hasMessage()) {
             var msg = update.getMessage();
             var user = msg.getFrom();
@@ -69,10 +67,13 @@ public class BotController extends TelegramLongPollingBot {
                 case "Изучить слова 📚" -> {
                     sendText(id, "Подождите, Ваш запрос обрабатывается...", Keyboards.mainMenu());
                     sendText(id, new ParserHelper().getWordsPairs(update, id), Keyboards.mainMenu());
-                    //dbHandler.connectionToDB();
-                    dbHandler.insertUserToDB(id.intValue());
+                    dbHandler.createTable();
+                    //dbHandler.setUserDB(id.intValue());
                 }
-                case "Дневной лимит слов 📈" -> messagesClass.setWordsLimit(chatId);
+                case "Дневной лимит слов 📈" -> {
+                    messagesClass.setWordsLimit(chatId);
+                    //dbHandler.setUserLimitDB(id.intValue());
+                }
                 case "Запустить тестирование 🍀" -> examHandler.getChoice(id);
                 case "Завершить тестирование досрочно 🏃‍♂️" -> {
                     sendText(id, examCounter.getStatistics(id), Keyboards.mainMenu());
@@ -89,18 +90,22 @@ public class BotController extends TelegramLongPollingBot {
                 case "five_btn" -> {
                     setLimit(findUserLimit(update, 5));
                     sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    //dbHandler.setUserLimitDB(id.intValue());
                 }
                 case "fifteen_btn" -> {
                     setLimit(findUserLimit(update, 15));
                     sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    //dbHandler.setUserLimitDB(id.intValue());
                 }
                 case "twenty_btn" -> {
                     setLimit(findUserLimit(update, 20));
                     sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    //dbHandler.setUserLimitDB(id.intValue());
                 }
                 case "ten_btn" -> {
                     setLimit(findUserLimit(update, 10));
                     sendText(id, "Новый лимит установлен ✅", Keyboards.mainMenu());
+                    //dbHandler.setUserLimitDB(id.intValue());
                 }
                 case "btn_wrong1", "btn_wrong2", "btn_wrong3" -> {
                     sendText(id, "Не правильно ❌", Keyboards.examMenu());
